@@ -34,49 +34,88 @@
             </div>
             
             <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
-                <i class="fas fa-bars"></i>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
         </nav>
     </div>
+</header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-header">
-            <div class="logo-container">
-                <img src="/images/logo.png" alt="Housing Care Logo" class="logo">
-                <div class="logo-text">
-                    <span class="brand-name">Housing <span class="accent-dark">Care</span></span>
-                    <span class="tagline">Service With Personal Touch</span>
-                </div>
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+    <div class="mobile-menu-header">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="Housing Care Logo" class="logo">
+            <div class="logo-text">
+                <span class="brand-name">Housing <span class="accent-dark">Care</span></span>
+                <span class="tagline">Service With Personal Touch</span>
             </div>
-            <button id="closeMenuBtn" class="close-menu-btn" aria-label="Close mobile menu">
-                <i class="fas fa-times"></i>
-            </button>
         </div>
-        <div class="mobile-nav-links">
-            <a href="/index.html">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="/pages/services.html">
-                <i class="fas fa-cogs"></i>
-                <span>Services</span>
-            </a>
-            <a href="/pages/about.html">
-                <i class="fas fa-info-circle"></i>
-                <span>About</span>
-            </a>
-            <a href="/pages/contact.html">
-                <i class="fas fa-envelope"></i>
-                <span>Contact</span>
-            </a>
-            <a href="/pages/career.html">
-                <i class="fas fa-briefcase"></i>
-                <span>Career</span>
-            </a>
-        </div>
+        <button id="closeMenuBtn" class="close-menu-btn" aria-label="Close mobile menu">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay"></div>
-</header> 
+    
+    <div class="mobile-menu-title">
+        <h3>Our Services</h3>
+    </div>
+    
+    <div class="mobile-nav-links">
+        <a href="/index.html" class="mobile-nav-link">
+            <div class="icon-container">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="link-text">
+                <span>Home</span>
+                <small>Back to homepage</small>
+            </div>
+        </a>
+        
+        <a href="/pages/services.html" class="mobile-nav-link">
+            <div class="icon-container">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <div class="link-text">
+                <span>Services</span>
+                <small>Our housing solutions</small>
+            </div>
+        </a>
+        
+        <a href="/pages/about.html" class="mobile-nav-link">
+            <div class="icon-container">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="link-text">
+                <span>About</span>
+                <small>Learn about us</small>
+            </div>
+        </a>
+        
+        <a href="/pages/contact.html" class="mobile-nav-link">
+            <div class="icon-container">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="link-text">
+                <span>Contact</span>
+                <small>Get in touch</small>
+            </div>
+        </a>
+        
+        <a href="/pages/career.html" class="mobile-nav-link">
+            <div class="icon-container">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="link-text">
+                <span>Career</span>
+                <small>Join our team</small>
+            </div>
+        </a>
+    </div>
+</div> 

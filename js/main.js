@@ -209,7 +209,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const servicePanels = document.querySelectorAll('.service-panel');
 
     serviceNavBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(event) {
+            // Prevent default action to avoid page scrolling
+            event.preventDefault();
+            
             const targetId = this.getAttribute('data-target');
             const targetPanel = document.getElementById(targetId);
 

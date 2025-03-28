@@ -417,19 +417,146 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Service Card Toggle
-                const serviceCards = document.querySelectorAll('.mega-service-card');
-                serviceCards.forEach(card => {
-                    const header = card.querySelector('.service-header');
-                    header.addEventListener('click', () => {
-                        // Remove active class from all other cards
-                        serviceCards.forEach(c => {
-                            if (c !== card) {
-                                c.classList.remove('active');
+                // Service Tabs Functionality
+                const serviceTabs = document.querySelectorAll('.service-tab');
+                const tabPanes = document.querySelectorAll('.tab-pane');
+                
+                serviceTabs.forEach(tab => {
+                    tab.addEventListener('click', function(event) {
+                        // Prevent default action to stop page scrolling
+                        event.preventDefault();
+                        
+                        // Remove active class from all tabs and panes
+                        serviceTabs.forEach(t => t.classList.remove('active'));
+                        tabPanes.forEach(p => p.classList.remove('active'));
+                        
+                        // Add active class to clicked tab
+                        this.classList.add('active');
+                        
+                        // Show corresponding content
+                        const tabCategory = this.getAttribute('data-tab');
+                        document.querySelector(`.tab-pane[data-category="${tabCategory}"]`).classList.add('active');
+                    });
+                });
+                
+                // Service Nav Buttons Functionality
+                const serviceNavBtns = document.querySelectorAll('.service-nav-btn');
+                const servicePanels = document.querySelectorAll('.service-panel');
+                
+                serviceNavBtns.forEach(btn => {
+                    btn.addEventListener('click', function(event) {
+                        // Prevent default action (scrolling)
+                        event.preventDefault();
+                        
+                        const targetId = this.getAttribute('data-target');
+                        const targetPanel = document.getElementById(targetId);
+                        
+                        // Remove active class from all buttons and panels
+                        serviceNavBtns.forEach(b => b.classList.remove('active'));
+                        servicePanels.forEach(p => p.classList.remove('active'));
+                        
+                        // Add active class to clicked button and corresponding panel
+                        this.classList.add('active');
+                        if (targetPanel) {
+                            targetPanel.classList.add('active');
+                        }
+                    });
+                });
+                
+                // Stats Counters Animation
+                function animateCounter(el) {
+                    const target = parseInt(el.getAttribute('data-count'));
+                    const suffix = el.innerText.replace(/[0-9]/g, '');
+                    let current = 0;
+                    const increment = target / 30; // Adjust for speed
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clearInterval(timer);
+                            current = target;
+                        }
+                        el.innerText = Math.floor(current) + suffix;
+                    }, 30);
+                }
+                
+                // Stats Filtering
+                const statsFilterBtns = document.querySelectorAll('.service-filters .filter-btn');
+                const statCards = document.querySelectorAll('.stat-card');
+                
+                statsFilterBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        statsFilterBtns.forEach(b => b.classList.remove('active'));
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Get the filter value
+                        const filterValue = this.getAttribute('data-filter');
+                        
+                        // Filter stat cards based on filter value
+                        statCards.forEach(card => {
+                            if (filterValue === 'all') {
+                                card.classList.remove('hidden');
+                            } else {
+                                if (card.getAttribute('data-category') === filterValue) {
+                                    card.classList.remove('hidden');
+                                } else {
+                                    card.classList.add('hidden');
+                                }
                             }
                         });
-                        // Toggle active class on clicked card
-                        card.classList.toggle('active');
+                    });
+                });
+                
+                // Initialize counter animation when stats section is in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counters = entry.target.querySelectorAll('.stat-number[data-count]');
+                            counters.forEach(counter => {
+                                animateCounter(counter);
+                            });
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                // Observe stats grid
+                const statsGrid = document.querySelector('.stats-grid');
+                if (statsGrid) {
+                    observer.observe(statsGrid);
+                }
+                
+                // Service Category Filtering
+                const categoryFilterBtns = document.querySelectorAll('.service-filters-container .filter-btn');
+                const categoryCards = document.querySelectorAll('.category-card');
+                
+                categoryFilterBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        categoryFilterBtns.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Get the filter value
+                        const filterValue = this.getAttribute('data-filter');
+                        
+                        // Filter cards based on filter value
+                        categoryCards.forEach(card => {
+                            // Show all cards if filter is "all"
+                            if (filterValue === 'all') {
+                                card.classList.remove('hidden');
+                            } else {
+                                // Check if card has the selected category
+                                if (card.getAttribute('data-category') === filterValue) {
+                                    card.classList.remove('hidden');
+                                } else {
+                                    card.classList.add('hidden');
+                                }
+                            }
+                        });
                     });
                 });
             });
@@ -1758,7 +1885,10 @@
             const tabPanes = document.querySelectorAll('.tab-pane');
             
             serviceTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
+                tab.addEventListener('click', function(event) {
+                    // Prevent default action to stop page scrolling
+                    event.preventDefault();
+                    
                     // Remove active class from all tabs and panes
                     serviceTabs.forEach(t => t.classList.remove('active'));
                     tabPanes.forEach(p => p.classList.remove('active'));
