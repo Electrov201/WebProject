@@ -554,7 +554,7 @@
     transform: translateY(-5px);
 }
 
-/* Mobile Responsive Styles */
+/* Improved Media Queries for About Page */
 @media screen and (max-width: 992px) {
     .story-content {
         grid-template-columns: 1fr;
@@ -563,10 +563,17 @@
     
     .story-image {
         order: -1;
+        text-align: center;
     }
     
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
     
     .partner-card {
@@ -586,33 +593,102 @@
     .cta-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+    }
+    
+    .value-card {
+        padding: 1.5rem;
+    }
+    
+    .value-icon {
+        width: 70px;
+        height: 70px;
     }
 }
 
-@media screen and (max-width: 576px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
+@media screen and (max-width: 768px) {
+    :root {
+        --section-spacing: 3rem;
     }
     
-    .values-grid,
+    .story-content {
+        margin-top: 1rem;
+    }
+    
+    .story-text p {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .logo-large {
+        max-width: 200px;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .value-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .value-card p {
+        font-size: 0.9rem;
+    }
+    
     .team-grid {
         grid-template-columns: 1fr;
     }
     
-    .cta-card {
-        padding: 2rem 1.5rem;
-    }
-    
-    .cta-card h2 {
-        font-size: 1.8rem;
+    .team-member {
+        max-width: 400px;
+        margin: 0 auto;
     }
     
     .testimonial-card {
-        padding: 1.5rem;
+        padding: 1.75rem;
     }
     
     .testimonial-text {
         font-size: 1rem;
+    }
+    
+    .quote-mark {
+        font-size: 1.8rem;
+    }
+    
+    .cta-card {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .cta-card h2 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    :root {
+        --section-spacing: 2.5rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .value-card {
+        padding: 1.5rem;
+        text-align: center;
     }
     
     .value-icon {
@@ -637,5 +713,95 @@
         height: 50px;
         bottom: -25px;
         right: -25px;
+    }
+    
+    .cta-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .cta-card h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cta-card p {
+        font-size: 1rem;
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .testimonial-text {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .author-name {
+        font-size: 1rem;
+    }
+    
+    .author-title {
+        font-size: 0.85rem;
+    }
+    
+    .member-image {
+        height: 250px;
+    }
+    
+    .member-info {
+        padding: 1.25rem;
+    }
+    
+    .partner-description p {
+        font-size: 0.9rem;
+    }
+    
+    .testimonial-controls {
+        gap: 1rem;
+    }
+    
+    .prev-btn, .next-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo-large {
+        max-width: 160px;
+    }
+    
+    .testimonial-text {
+        text-align: left;
+    }
+    
+    .testimonial-controls {
+        margin-top: 1.5rem;
+    }
+    
+    .rating {
+        font-size: 0.9rem;
+    }
+    
+    .team-member {
+        margin-bottom: 1rem;
+    }
+    
+    .partner-card {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    }
+    
+    .partner-info {
+        padding: 1.5rem;
+    }
+    
+    .cta-buttons .btn-light, 
+    .cta-buttons .btn-outline-light {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .value-card {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
     }
 } 
