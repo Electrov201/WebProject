@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Housing Care</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="apple-touch-icon" href="/images/logo.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/career.css?v=1">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Add this right after your other CSS links -->
+    <style>
+        .application-modal {
+            display: none;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(5px) !important;
+            z-index: 9999 !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 20px !important;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .modal-header {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .application-form {
+            padding: 30px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input:not([type="file"]),
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: #2c3e50;
+            color: white;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2);
+        }
+
+        .close-modal {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 10px;
+            }
+            
+            .application-form {
+                padding: 20px;
+            }
+        }
+
+        /* Current Job Openings heading */
+        .section-title h2 {
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 1rem !important;
+            color: #333 !important;
+        }
+
+        /* Don't See the Right Fit heading */
+        .cta-card h2 {
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 1.5rem !important;
+            color: #333 !important;
+        }
+
+        /* Subtext under headings */
+        .section-title p,
+        .cta-card p {
+            font-size: 1.2rem !important;
+            color: #666 !important;
+            line-height: 1.6 !important;
+            margin-bottom: 2rem !important;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-title h2,
+            .cta-card h2 {
+                font-size: 2rem !important;
+            }
+            
+            .section-title p,
+            .cta-card p {
+                font-size: 1.1rem !important;
+            }
+        }
+
+        /* Styled box for Current Job Openings */
+        .section-title {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa) !important;
+            border-radius: 15px !important;
+            padding: 40px !important;
+            box-shadow: 0 10px 30px rgba(4, 76, 76, 0.1) !important;
+            border: 1px solid rgba(4, 76, 76, 0.1) !important;
+            margin-bottom: 40px !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        .section-title:before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 5px !important;
+            background: linear-gradient(90deg, rgba(4, 76, 76, 0.8), rgba(4, 76, 76, 0.6)) !important;
+        }
+
+        /* Styled box for Don't See Right Fit */
+        .cta-card {
+            background: linear-gradient(135deg, rgba(4, 76, 76, 0.95), rgba(4, 76, 76, 0.85)) !important;
+            border-radius: 15px !important;
+            padding: 40px !important;
+            box-shadow: 0 15px 30px rgba(4, 76, 76, 0.3) !important;
+            margin-bottom: 40px !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        /* Update text colors for CTA card */
+        .cta-card h2,
+        .cta-card p {
+            color: white !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Add some decorative elements */
+        .section-title:after,
+        .cta-card:after {
+            content: '' !important;
+            position: absolute !important;
+            right: -20px !important;
+            bottom: -20px !important;
+            width: 140px !important;
+            height: 140px !important;
+            background: rgba(4, 76, 76, 0.1) !important;
+            border-radius: 70px !important;
+            z-index: 0 !important;
+        }
+
+        /* Ensure content stays above decorative elements */
+        .section-title > *,
+        .cta-card > * {
+            position: relative !important;
+            z-index: 1 !important;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-title,
+            .cta-card {
+                padding: 30px 20px !important;
+                margin: 20px !important;
+            }
+        }
+
+        /* Button styling in CTA card */
+        .cta-buttons {
+            margin-top: 30px !important;
+            display: flex !important;
+            gap: 15px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .btn-light {
+            background: white !important;
+            color: rgba(4, 76, 76, 0.9) !important;
+            padding: 12px 24px !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .btn-outline-light {
+            border: 2px solid white !important;
+            color: white !important;
+            padding: 12px 24px !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .btn-outline-light:hover {
+            background: white !important;
+            color: rgba(4, 76, 76, 0.9) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Update accent colors */
+        .accent {
+            color: rgba(4, 76, 76, 1) !important;
+        }
+
+        /* Update primary button colors */
+        .btn-primary {
+            background: rgba(4, 76, 76, 0.9) !important;
+            border-color: rgba(4, 76, 76, 1) !important;
+            box-shadow: 0 4px 12px rgba(4, 76, 76, 0.2) !important;
+        }
+
+        .btn-primary:hover {
+            background: rgba(4, 76, 76, 1) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 15px rgba(4, 76, 76, 0.3) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Career Hero -->
+        <section class="hero">
+            <div class="video-background">
+                <video autoplay loop muted playsinline poster="/images/video-poster.jpg">
+                    <source src="/images/Buildings.mp4" type="video/mp4">
+                </video>
+                <div class="overlay"></div>
+                <div class="grid-pattern"></div>
+            </div>
+
+            <div class="container hero-content">
+                <div class="hero-text animate-fade-up">
+                  
+                    <h1>Career <span class="accent-dark">Opportunities</span></h1>
+                    <p>Grow with us in creating better living spaces for communities</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Join Us Section -->
+        <section class="our-values">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Benefits & Culture</span>
+                    </div>
+                    <h2>Why Join <span class="accent">Housing Care</span></h2>
+                    <p>Be part of a team that values excellence, innovation, and personal growth</p>
+                </div>
+
+                <div class="values-grid">
+                    <div class="value-card animate-fade-up" data-delay="100">
+                        <div class="value-icon">
+                           <!-- <i class="fas fa-chart-line"></i> -->
+                        </div>
+                        <h3>Career Growth</h3>
+                        <p>We provide clear advancement paths and continuous opportunities for professional development.</p>
+                    </div>
+
+                    <div class="value-card animate-fade-up" data-delay="200">
+                        <div class="value-icon">
+                           <!-- <i class="fas fa-graduation-cap"></i> -->
+                        </div>
+                        <h3>Learning & Development</h3>
+                        <p>Ongoing training programs to enhance your skills and keep you at the forefront of industry knowledge.</p>
+                    </div>
+
+                    <div class="value-card animate-fade-up" data-delay="300">
+                        <div class="value-icon">
+                           <!-- <i class="fas fa-medal"></i> -->
+                        </div>
+                        <h3>Recognition</h3>
+                        <p>We celebrate achievements and recognize outstanding contributions through our rewards program.</p>
+                    </div>
+
+                    <div class="value-card animate-fade-up" data-delay="400">
+                        <div class="value-icon">
+                           <!-- <i class="fas fa-heart"></i> -->
+                        </div>
+                        <h3>Work-Life Balance</h3>
+                        <p>Flexible work arrangements that respect your personal time and promote well-being.</p>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Listings -->
+        <section class="container py-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title text-center mb-5">
+                        <h2>Current Job Openings</h2>
+                        <p>Explore our available positions and find the perfect match for your skills and aspirations</p>
+                    
+                    
+                    <div class="service-filters-container">
+                        <div class="filter-intro">Browse by Department</div>
+                        <div class="service-filters">
+                            <button class="filter-btn active" data-filter="all">All Departments</button>
+                            <button class="filter-btn" data-filter="management">Management</button>
+                            <button class="filter-btn" data-filter="accounts">Accounts</button>
+                            <button class="filter-btn" data-filter="maintenance">Maintenance</button>
+                            <button class="filter-btn" data-filter="resident">Resident Relations</button>
+                            <button class="filter-btn" data-filter="it">IT Services</button>
+                        </div>
+                    
+                    
+                      <div id="job-listings" class="job-listings-container">
+                        <div class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <p>Loading job openings...</p>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Update the test button -->
+       <!-- <button onclick="openModal('')" class="btn btn-primary" style="
+            margin: 20px;
+            width: auto;
+            padding: 8px 16px;
+            font-size: 14px;
+            background: #6c757d;
+            border-radius: 4px;
+            box-shadow: none;
+        ">Apply</button>
+
+        <!-- Application Form Modal -->
+        <div class="application-modal" id="applicationModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Apply for <span id="jobTitle"></span></h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <form id="applicationForm" class="application-form">
+                    <input type="hidden" id="position" name="position">
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <select id="experience" name="experience" required>
+                            <option value="" disabled selected>Select your experience</option>
+                            <option value="0-1">Less than 1 year</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5+">More than 5 years</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resume">Upload Resume (PDF/DOC/DOCX)</label>
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coverLetter">Cover Letter / Why you're interested in this role</label>
+                        <textarea id="coverLetter" name="coverLetter" required placeholder="Tell us why you're interested and what makes you a good fit"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Join Our Team CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card animate-fade-up">
+                    <div class="content">
+                        <h2>Don't See the Right Fit?</h2>
+                        <p>We're always looking for talented individuals to join our team. Submit your information and we'll keep you in mind for future opportunities.</p>
+                        <div class="cta-buttons">
+                            <a href="https://forms.gle/placeholder" target="_blank" class="btn-light">
+                                <i class="fas fa-file-alt"></i> Submit Your Resume
+                            </a>
+                            <a href="/pages/contact.html" class="btn-outline-light">
+                                <i class="fas fa-phone"></i> Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        // Load navbar and footer components
+        $(document).ready(function() {
+            $("#navbar-placeholder").load("/components/navbar.html", function() {
+                $.getScript("/js/navigation.js");
+                
+                // Add active class to current page in navbar
+                setTimeout(function() {
+                    $('.nav-link[data-page="career"]').addClass('active');
+                }, 100);
+            });
+            $("#footer-placeholder").load("/components/footer.html");
+            
+            // Load job listings from Google Sheets
+            loadJobListings();
+            
+            // Job filter functionality
+            $(document).on('click', '.filter-btn', function() {
+                // Remove active class from all buttons
+                $('.filter-btn').removeClass('active');
+                
+                // Add active class to clicked button
+                $(this).addClass('active');
+                
+                // Get filter value
+                const filterValue = $(this).data('filter');
+                
+                // Show/hide job cards based on filter
+                if (filterValue === 'all') {
+                    $('.job-card').show();
+                } else {
+                    $('.job-card').hide();
+                    $(`.job-card[data-category="${filterValue}"]`).show();
+                }
+                
+                // If no jobs are visible, show a message
+                const visibleJobs = $('.job-card:visible').length;
+                if (visibleJobs === 0 && filterValue !== 'all') {
+                    showNoJobsMessage(filterValue);
+                }
+            });
+            
+            // Job application modal functionality
+            const modal = document.getElementById('applicationModal');
+            const jobTitle = document.getElementById('jobTitle');
+            const positionInput = document.getElementById('position');
+            
+            // Open modal when apply button is clicked
+            $(document).on('click', '.apply-btn', function() {
+                const job = $(this).data('job');
+                jobTitle.textContent = job;
+                positionInput.value = job;
+                modal.style.cssText = `
+                    display: flex !important;
+                    position: fixed !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    background: rgba(0, 0, 0, 0.7) !important;
+                    backdrop-filter: blur(5px) !important;
+                    z-index: 1000 !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    padding: 20px !important;
+                `;
+            });
+            
+            // Close modal when X is clicked
+            $('.close-modal').on('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            $(window).on('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Handle form submission
+            $('#applicationForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real implementation, you would submit the form data to a server
+                alert('Thank you for your application! We will review your information and contact you soon.');
+                
+                // Reset form and close modal
+                this.reset();
+                modal.style.display = 'none';
+            });
+        });
+        
+        // Function to load job listings from Google Sheets
+        function loadJobListings() {
+            // Replace this URL with your published Google Sheet URL
+            // Format your Google Sheet as CSV and use the published URL
+            // Get this URL by going to File > Share > Publish to web > Select Sheet > CSV
+            const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/YOUR_SPREADSHEET_ID/pub?output=csv';
+            
+            // Dictionary of department icons
+            const departmentIcons = {
+                'management': 'fa-briefcase',
+                'accounting': 'fa-calculator',
+                'operations': 'fa-tools',
+                'customer-service': 'fa-headset',
+                'technology': 'fa-laptop-code',
+                'default': 'fa-building' // Default icon
+            };
+            
+            $.ajax({
+                url: googleSheetUrl,
+                dataType: 'text',
+                success: function(data) {
+                    // Parse CSV data
+                    const jobs = parseCSV(data);
+                    
+                    // Clear loading indicator
+                    $('#job-listings').empty();
+                    
+                    if (jobs.length > 0) {
+                        // Create a job card for each job listing
+                        jobs.forEach(function(job, index) {
+                            // Skip header row if present
+                            if (index === 0 && job.position.toLowerCase() === 'position') return;
+                            
+                            // Get correct icon for department
+                            const icon = departmentIcons[job.department.toLowerCase()] || departmentIcons.default;
+                            
+                            // Create job card HTML
+                            const jobCard = `
+                                <div class="category-card job-card animate-fade-up" data-category="${job.department.toLowerCase()}" data-delay="${index * 100}">
+                                    <div class="category-icon">
+                                        <i class="fas ${icon}"></i>
+                                    </div>
+                                    <h3>${job.position}</h3>
+                                    <div class="job-details">
+                                        <div class="job-meta">
+                                            <p><i class="fas fa-map-marker-alt"></i> ${job.location}</p>
+                                            <p><i class="fas fa-clock"></i> ${job.jobType}</p>
+                                            <p><i class="fas fa-money-bill-wave"></i> ${job.salary}</p>
+                                            <p><i class="fas fa-calendar-alt"></i> Posted: ${job.postDate}</p>
+                                        </div>
+                                        <div class="job-description">
+                                            <p>${job.description}</p>
+                                            <h4>Key Responsibilities:</h4>
+                                            <ul>
+                                                ${createListItems(job.responsibilities)}
+                                            </ul>
+                                            <h4>Requirements:</h4>
+                                            <ul>
+                                                ${createListItems(job.requirements)}
+                                            </ul>
+                                        </div>
+                                        <button class="apply-btn btn-primary" data-job="${job.position}">Apply Now</button>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            // Add job card to the listings
+                            $('#job-listings').append(jobCard);
+                        });
+                    } else {
+                        // Show message if no jobs are found
+                        showNoJobsMessage('all');
+                    }
+                },
+                error: function(error) {
+                    console.error('Error loading job listings:', error);
+                    showNoJobsMessage('all');
+                }
+            });
+        }
+        
+        // Helper function to parse CSV data
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',').map(header => header.trim());
+            const result = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue; // Skip empty lines
+                
+                const values = parseCSVLine(lines[i]);
+                const job = {};
+                
+                headers.forEach((header, index) => {
+                    if (index < values.length) {
+                        // Convert header to camelCase for easier JavaScript usage
+                        const camelHeader = header.toLowerCase().replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => 
+                            index === 0 ? letter.toLowerCase() : letter.toUpperCase()
+                        ).replace(/\s+/g, '');
+                        
+                        job[camelHeader] = values[index].trim();
+                    }
+                });
+                
+                result.push(job);
+            }
+            
+            return result;
+        }
+        
+        // Helper function to parse a CSV line (handles quoted values with commas)
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            result.push(current); // Add the last value
+            return result;
+        }
+        
+        // Helper function to create list items from comma-separated values
+        function createListItems(itemsStr) {
+            if (!itemsStr) return '';
+            
+            // Check if items are already in a format we can split (comma or semicolon separated)
+            const separator = itemsStr.includes(';') ? ';' : ',';
+            return itemsStr.split(separator)
+                .map(item => `<li>${item.trim()}</li>`)
+                .join('');
+        }
+
+        function showNoJobsMessage(filterType) {
+            // Clear existing messages first
+            $('#job-listings').empty();
+            
+            const filterText = filterType === 'all' ? 'any department' : `the ${filterType} department`;
+            const noJobsMsg = document.createElement('div');
+            noJobsMsg.className = 'no-jobs-message';
+            noJobsMsg.innerHTML = `
+                <i class="fas fa-search"></i>
+                <h4>No Positions Available</h4>
+                <p>We currently don't have any open positions in ${filterText}.</p>
+                <p>Please check back soon or submit your resume for future opportunities.</p>
+            `;
+            $('#job-listings').append(noJobsMsg);
+        }
+
+        function createJobCard(job) {
+            // Set department icon based on job department
+            let departmentIcon = '';
+            switch(job.Department.toLowerCase()) {
+                case 'management':
+                    departmentIcon = '<i class="fas fa-users-cog"></i>';
+                    break;
+                case 'accounts':
+                    departmentIcon = '<i class="fas fa-calculator"></i>';
+                    break;
+                case 'maintenance':
+                    departmentIcon = '<i class="fas fa-tools"></i>';
+                    break;
+                case 'resident':
+                    departmentIcon = '<i class="fas fa-hands-helping"></i>';
+                    break;
+                case 'it':
+                    departmentIcon = '<i class="fas fa-laptop-code"></i>';
+                    break;
+                default:
+                    departmentIcon = '<i class="fas fa-building"></i>';
+            }
+
+            // Create job card elements
+            const jobCard = document.createElement('div');
+            jobCard.className = 'job-card';
+            jobCard.dataset.department = job.Department.toLowerCase();
+
+            let jobHtml = `
+                <div class="category-icon d-flex align-items-center justify-content-center rounded-circle">
+                    ${departmentIcon}
+                </div>
+                <h3>${job.Position}</h3>
+                <div class="job-meta">
+                    <p><i class="fas fa-map-marker-alt"></i> ${job.Location}</p>
+                    <p><i class="fas fa-briefcase"></i> ${job.JobType}</p>
+                    <p><i class="fas fa-money-bill-alt"></i> ${job.Salary}</p>
+                    <p><i class="fas fa-calendar-alt"></i> ${job.PostDate}</p>
+                </div>
+                <div class="job-description">
+                    <p>${job.Description}</p>
+                    <h4>Responsibilities</h4>
+                    <ul>
+                        ${job.Responsibilities.split(',').map(resp => `<li>${resp.trim()}</li>`).join('')}
+                    </ul>
+                    <h4>Requirements</h4>
+                    <ul>
+                        ${job.Requirements.split(',').map(req => `<li>${req.trim()}</li>`).join('')}
+                    </ul>
+                </div>
+                <button class="apply-btn btn-primary" data-job-title="${job.Position}" data-toggle="modal" data-target="#applicationModal">Apply Now</button>
+            `;
+
+            jobCard.innerHTML = jobHtml;
+            return jobCard;
+        }
+
+        function openModal(jobTitle) {
+            const modal = document.getElementById('applicationModal');
+            document.getElementById('jobTitle').textContent = jobTitle;
+            document.getElementById('position').value = jobTitle;
+            
+            // Force modal to display
+            modal.style.cssText = `
+                display: flex !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                background: rgba(0, 0, 0, 0.7) !important;
+                backdrop-filter: blur(5px) !important;
+                z-index: 9999 !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 20px !important;
+            `;
+
+            // Log to confirm function is called
+            console.log('Modal opened for:', jobTitle);
+        }
+    </script>
+    <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+</html> 

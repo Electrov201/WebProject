@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Housing Care</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="apple-touch-icon" href="/images/logo.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Services Hero -->
+        <section class="hero">
+            <div class="video-background">
+                <video autoplay loop muted playsinline poster="/images/video-poster.jpg">
+                    <source src="/images/Buildings.mp4" type="video/mp4">
+                </video>
+                <div class="overlay"></div>
+                <div class="grid-pattern"></div>
+            </div>
+
+            <div class="container hero-content">
+                <div class="hero-text animate-fade-up">
+                    <h1>Our <span class="accent">Services</span></h1>
+                    <p>Comprehensive housing society management solutions tailored to your needs</p>
+                </div>
+                
+                <!-- Service Tabs Section -->
+                <div class="service-tabs-container animate-fade-up">
+                    <div class="service-tabs">
+                        <button class="service-tab active" data-tab="all">
+                            <i class="fas fa-th-large"></i>
+                            All Services
+                        </button>
+                        <button class="service-tab" data-tab="financial">
+                            <i class="fas fa-calculator"></i>
+                            Financial
+                        </button>
+                        <button class="service-tab" data-tab="taxation">
+                            <i class="fas fa-file-invoice"></i>
+                            Taxation
+                        </button>
+                        <button class="service-tab" data-tab="legal">
+                            <i class="fas fa-scale-balanced"></i>
+                            Legal
+                        </button>
+                        <button class="service-tab" data-tab="facility">
+                            <i class="fas fa-screwdriver-wrench"></i>
+                            Facility
+                        </button>
+                        <button class="service-tab" data-tab="amc">
+                            <i class="fas fa-cogs"></i>
+                            AMC
+                        </button>
+                        <button class="service-tab" data-tab="insurance">
+                            <i class="fas fa-shield"></i>
+                            Insurance
+                        </button>
+                        <button class="service-tab" data-tab="loan">
+                            <i class="fas fa-money-bill"></i>
+                            Loan
+                        </button>
+                        <button class="service-tab" data-tab="solar">
+                            <i class="fas fa-sun"></i>
+                            Solar
+                        </button>
+                    </div>
+                    <div class="service-tab-content">
+                        <div class="tab-pane active" data-category="all">
+                            <h3>All Housing Care Services</h3>
+                            <p>Discover our comprehensive range of professional services designed to enhance your housing society management experience.</p>
+                            <a href="#categories" class="btn btn-primary">
+                                View All Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="financial">
+                            <h3>Financial Solutions</h3>
+                            <p>Expert accounting, taxation, and financial management services to ensure your society's financial health and compliance with all regulations.</p>
+                            <a href="#accounting" class="btn btn-primary">
+                                Explore Financial Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="taxation">
+                            <h3>Taxation & Compliance</h3>
+                            <p>Expert tax filing, GST services, business compliance, and payroll processing for individuals and organizations.</p>
+                            <a href="#taxation" class="btn btn-primary">
+                                Explore Taxation Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="legal">
+                            <h3>Legal Support</h3>
+                            <p>Comprehensive legal assistance for registrations, compliance, dispute resolution and documentation to protect your society's interests.</p>
+                            <a href="#legal" class="btn btn-primary">
+                                Explore Legal Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="facility">
+                            <h3>Facility Management</h3>
+                            <p>Professional maintenance, security, and housekeeping services for your society's day-to-day operations and long-term management needs.</p>
+                            <a href="#facility" class="btn btn-primary">
+                                Explore Facility Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="amc">
+                            <h3>AMC & Installation Services</h3>
+                            <p>Comprehensive maintenance contracts and professional installation services for essential equipment and safety systems.</p>
+                            <a href="#amc" class="btn btn-primary">
+                                Explore AMC Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="insurance">
+                            <h3>Insurance Services</h3>
+                            <p>Complete insurance solutions for buildings, equipment, staff, and liability protection for your housing society.</p>
+                            <a href="#insurance" class="btn btn-primary">
+                                Explore Insurance Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="loan">
+                            <h3>Loan Services</h3>
+                            <p>Tailored financing solutions including personal loans, home loans, and society renovation loans with competitive rates.</p>
+                            <a href="#loan" class="btn btn-primary">
+                                Explore Loan Services
+                            </a>
+                        </div>
+                        <div class="tab-pane" data-category="solar">
+                            <h3>Solar Services</h3>
+                            <p>Sustainable energy solutions including solar panel installation, maintenance, and government subsidy assistance.</p>
+                            <a href="#solar" class="btn btn-primary">
+                                Explore Solar Services
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services Showcase -->
+        <section class="services-showcase">
+        <style>
+            .services-showcase {
+                background: var(--bg-light);
+                width: 100%;
+            }
+
+            .mega-service-card {
+                background: white;
+                border-radius: var(--border-radius);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin-bottom: 2rem;
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .service-header {
+                display: flex;
+                align-items: center;
+                padding: 1.5rem;
+                background: var(--bg-light);
+                cursor: pointer;
+                position: relative;
+                transition: background-color 0.3s ease;
+            }
+
+            .service-header:hover {
+                background: rgba(0, 0, 0, 0.05);
+            }
+
+            .service-header::after {
+                content: '\f078';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                color: var(--text-dark);
+                font-size: 1.2rem;
+                transition: transform 0.3s ease;
+                margin-left: auto;
+            }
+
+            .mega-service-card.active .service-header::after {
+                transform: rotate(180deg);
+            }
+
+            .service-details {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
+
+            .mega-service-card.active .service-details {
+                max-height: none;
+            }
+
+            .service-nav {
+                display: flex;
+                gap: 1rem;
+                padding: 1.5rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                flex-wrap: wrap;
+            }
+
+            .service-nav-btn {
+                padding: 0.75rem 1.5rem;
+                border: none;
+                background: var(--bg-light);
+                color: var(--text-dark);
+                border-radius: var(--border-radius);
+                cursor: pointer;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.3s ease;
+                flex: 1;
+                min-width: 150px;
+                justify-content: center;
+                white-space: nowrap;
+            }
+
+            .service-nav-btn i {
+                font-size: 1.2rem;
+            }
+
+            .service-nav-btn:hover,
+            .service-nav-btn.active {
+                background: var(--accent-color);
+                color: white;
+            }
+
+            .service-panel {
+                display: none;
+                padding: 2rem;
+            }
+
+            .service-panel.active {
+                display: block;
+                animation: fadeIn 0.3s ease;
+            }
+
+            .service-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+                width: 100%;
+            }
+
+            .service-item {
+                background: var(--bg-light);
+                padding: 1.5rem;
+                border-radius: var(--border-radius);
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                transition: all 0.3s ease;
+                width: 100%;
+            }
+
+            .service-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .item-icon {
+                width: 40px;
+                height: 40px;
+                background: var(--accent-color);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 1.2rem;
+                flex-shrink: 0;
+            }
+
+            .item-content {
+                flex: 1;
+            }
+
+            .item-content h4 {
+                margin: 0 0 0.5rem 0;
+                color: var(--text-dark);
+                font-size: 1.1rem;
+            }
+
+            .item-content p {
+                margin: 0;
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 1200px) {
+                .service-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                }
+            }
+
+            @media (max-width: 992px) {
+                .service-nav {
+                    justify-content: center;
+                }
+
+                .service-nav-btn {
+                    min-width: 140px;
+                    padding: 0.75rem 1rem;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .service-nav {
+                    flex-direction: column;
+                    gap: 0.75rem;
+                }
+
+                .service-nav-btn {
+                    width: 100%;
+                    justify-content: flex-start;
+                    min-width: auto;
+                }
+
+                .service-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .service-panel {
+                    padding: 1.5rem 1rem;
+                }
+
+                .service-item {
+                    padding: 1.25rem;
+                }
+
+                .item-content h4 {
+                    font-size: 1rem;
+                }
+
+                .item-content p {
+                    font-size: 0.85rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .service-header {
+                    padding: 1.25rem;
+                }
+
+                .service-nav {
+                    padding: 1rem;
+                }
+
+                .service-nav-btn {
+                    font-size: 0.9rem;
+                }
+
+                .item-icon {
+                    width: 35px;
+                    height: 35px;
+                    font-size: 1rem;
+                }
+
+                .service-item {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    text-align: left;
+                }
+
+                .item-content {
+                    width: 100%;
+                }
+            }
+
+            /* Fix for container width */
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+
+            /* Ensure content doesn't overflow */
+            .service-content-wrapper {
+                width: 100%;
+                overflow-x: hidden;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Service Card Toggle
+                const serviceCards = document.querySelectorAll('.mega-service-card');
+                serviceCards.forEach(card => {
+                    const header = card.querySelector('.service-header');
+                    header.addEventListener('click', () => {
+                        // Remove active class from all other cards
+                        serviceCards.forEach(c => {
+                            if (c !== card) {
+                                c.classList.remove('active');
+                            }
+                        });
+                        // Toggle active class on clicked card
+                        card.classList.toggle('active');
+                    });
+                });
+            });
+        </script>
+
+        <!-- Accounting & Financial Services -->
+        <section id="accounting" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Financial Management</span>
+                    </div>
+                    <h2>Accounting & <span class="accent">Financial Services</span></h2>
+                    <p>Comprehensive financial management solutions for housing societies and businesses</p>
+                </div>
+
+                
+                    
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <!-- Accounting & Financial Services Card -->
+                    <div class="mega-service-card active">
+                        
+
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav">
+                                <button class="service-nav-btn active" data-target="general">
+                                    <i class="fas fa-book"></i>
+                                    General Accounting
+                                </button>
+                                <button class="service-nav-btn" data-target="society">
+                                    <i class="fas fa-building"></i>
+                                    Housing Society Accounting
+                                </button>
+                                <button class="service-nav-btn" data-target="business">
+                                    <i class="fas fa-briefcase"></i>
+                                    Accounting for Companies, Firms & Trusts
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- General Accounting -->
+                                <div class="service-panel active" id="general">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-book-open"></i></div>
+                                            <div class="item-content">
+                                                <h4>Bookkeeping</h4>
+                                                <p>Daily, Monthly, Quarterly bookkeeping services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice"></i></div>
+                                            <div class="item-content">
+                                                <h4>General Ledger</h4>
+                                                <p>Maintenance of General Ledger</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-money-bill-transfer"></i></div>
+                                            <div class="item-content">
+                                                <h4>Account Management</h4>
+                                                <p>Accounts Payable & Receivable Management</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-bank"></i></div>
+                                            <div class="item-content">
+                                                <h4>Bank Reconciliation</h4>
+                                                <p>Regular bank statement reconciliation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-balance-scale"></i></div>
+                                            <div class="item-content">
+                                                <h4>Trial Balance</h4>
+                                                <p>Trial Balance Preparation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                                            <div class="item-content">
+                                                <h4>Financial Statements</h4>
+                                                <p>Preparation of Balance Sheet, Profit & Loss, Cash Flow Statement</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-calculator"></i></div>
+                                            <div class="item-content">
+                                                <h4>Fixed Asset Accounting</h4>
+                                                <p>Fixed Asset Accounting & Depreciation Calculation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-chart-line"></i></div>
+                                            <div class="item-content">
+                                                <h4>Cost Control</h4>
+                                                <p>Cost Control Over Expenditure</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice"></i></div>
+                                            <div class="item-content">
+                                                <h4>Vendor Management</h4>
+                                                <p>Vendor & Expense Management</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Housing Society Accounting -->
+                                <div class="service-panel" id="society">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice"></i></div>
+                                            <div class="item-content">
+                                                <h4>Maintenance Billing</h4>
+                                                <p>Monthly Maintenance Bill Calculation & Distribution</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-receipt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Payment Collection</h4>
+                                                <p>Generation of Receipts & Collection of Payments</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                                            <div class="item-content">
+                                                <h4>Overdue Tracking</h4>
+                                                <p>Tracking Overdue Payments & Sending Reminder Notices</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-chart-line"></i></div>
+                                            <div class="item-content">
+                                                <h4>Financial Reports</h4>
+                                                <p>Income & Expenditure Statement</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-calculator"></i></div>
+                                            <div class="item-content">
+                                                <h4>Budget Planning</h4>
+                                                <p>Annual Budget Forecasting & Financial Planning</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-exclamation-circle"></i></div>
+                                            <div class="item-content">
+                                                <h4>Outstanding Reports</h4>
+                                                <p>Outstanding Report & Notice to Defaulters</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-contract"></i></div>
+                                            <div class="item-content">
+                                                <h4>Audit Services</h4>
+                                                <p>Audit Services through Panelist Auditors</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Business Accounting -->
+                                <div class="service-panel" id="business">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-money-bill-trend-up"></i></div>
+                                            <div class="item-content">
+                                                <h4>Transaction Recording</h4>
+                                                <p>Recording Daily Transactions (Sales, Purchase, Bank, etc.)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-landmark"></i></div>
+                                            <div class="item-content">
+                                                <h4>Bank Reconciliation</h4>
+                                                <p>Regular bank statement reconciliation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-lines"></i></div>
+                                            <div class="item-content">
+                                                <h4>Financial Statements</h4>
+                                                <p>Preparation of Financial Statements</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-chart-pie"></i></div>
+                                            <div class="item-content">
+                                                <h4>MIS Reporting</h4>
+                                                <p>Management Information System (MIS) Reporting</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-building"></i></div>
+                                            <div class="item-content">
+                                                <h4>Asset Management</h4>
+                                                <p>Fixed Asset Management</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Taxation & Compliance Services -->
+        <section id="taxation" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Tax Management</span>
+                    </div>
+                    <h2>Taxation & <span class="accent">Compliance Services</span></h2>
+                    <p>Professional tax planning and compliance solutions for individuals and businesses</p>
+                </div>
+
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <div class="mega-service-card active">
+                    
+
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav">
+                                <button class="service-nav-btn active" data-target="tax">
+                                    <i class="fas fa-file-invoice"></i>
+                                    Income Tax & GST Services
+                                </button>
+                                <button class="service-nav-btn" data-target="compliance">
+                                    <i class="fas fa-building"></i>
+                                    Business Compliance
+                                </button>
+                                <button class="service-nav-btn" data-target="payroll">
+                                    <i class="fas fa-users"></i>
+                                    Payroll & Employee Compliance
+                                </button>
+                                <button class="service-nav-btn" data-target="trust">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                    Trust & NGO Compliance
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- Income Tax & GST Services -->
+                                <div class="service-panel active" id="tax">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice"></i></div>
+                                            <div class="item-content">
+                                                <h4>Income Tax Returns Filing</h4>
+                                                <p>Filing returns for Companies, LLPs, Firms, Trusts & Individuals</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-gavel"></i></div>
+                                            <div class="item-content">
+                                                <h4>Litigation & Appeal</h4>
+                                                <p>Litigation & Appeal for Income Tax Notices</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-receipt"></i></div>
+                                            <div class="item-content">
+                                                <h4>GST Registration & Returns</h4>
+                                                <p>GST Registration & Return Filing (GSTR-1, GSTR-3B, GSTR-9 & 9C)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-sync"></i></div>
+                                            <div class="item-content">
+                                                <h4>GST Reconciliation</h4>
+                                                <p>GST Reconciliation & Input Tax Credit Management</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-clipboard-check"></i></div>
+                                            <div class="item-content">
+                                                <h4>GST Audit & Advisory</h4>
+                                                <p>Comprehensive GST audit and advisory services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-percentage"></i></div>
+                                            <div class="item-content">
+                                                <h4>TDS Compliance</h4>
+                                                <p>TDS Compliance & Return Filing</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-calculator"></i></div>
+                                            <div class="item-content">
+                                                <h4>Advance Tax</h4>
+                                                <p>Advance Tax Calculation & Payment</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-chart-line"></i></div>
+                                            <div class="item-content">
+                                                <h4>Capital Gains Tax</h4>
+                                                <p>Tax Planning on Capital Gains & Filing</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-alt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Tax Audit</h4>
+                                                <p>Tax Audit under Income Tax Act</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Business Compliance -->
+                                <div class="service-panel" id="compliance">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-building"></i></div>
+                                            <div class="item-content">
+                                                <h4>Business Incorporation</h4>
+                                                <p>Incorporation of Companies & LLPs</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-contract"></i></div>
+                                            <div class="item-content">
+                                                <h4>Annual ROC Returns</h4>
+                                                <p>Filing of Annual ROC Returns (AOC-4, MGT-7, LLP-11, etc.)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-id-card"></i></div>
+                                            <div class="item-content">
+                                                <h4>MCA Compliance</h4>
+                                                <p>MCA Compliance & Director KYC (DIR-3 KYC)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-signature"></i></div>
+                                            <div class="item-content">
+                                                <h4>Digital Signature</h4>
+                                                <p>Digital Signature Services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-exchange-alt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Business Conversion</h4>
+                                                <p>Business Structure Conversion (LLP to Pvt. Ltd., Pvt. Ltd. to Public Ltd.)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-door-closed"></i></div>
+                                            <div class="item-content">
+                                                <h4>Company Closure</h4>
+                                                <p>Company & LLP Closure / Strike-Off</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Payroll & Employee Compliance -->
+                                <div class="service-panel" id="payroll">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-shield-alt"></i></div>
+                                            <div class="item-content">
+                                                <h4>PF & ESI Registration</h4>
+                                                <p>Provident Fund & Employee State Insurance Registration & Compliance</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-money-bill-wave"></i></div>
+                                            <div class="item-content">
+                                                <h4>Payroll Processing</h4>
+                                                <p>Payroll Processing & Tax Deductions</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                                            <div class="item-content">
+                                                <h4>Professional Tax</h4>
+                                                <p>Professional Tax Registration & Return Filing</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-gift"></i></div>
+                                            <div class="item-content">
+                                                <h4>Employee Benefits</h4>
+                                                <p>Bonus, Gratuity & Leave Encashment Compliance</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Trust & NGO Compliance -->
+                                <div class="service-panel" id="trust">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                                            <div class="item-content">
+                                                <h4>Trust Registration</h4>
+                                                <p>Trust & NGO Registration (12A, 80G, CSR Approval, etc.)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-globe"></i></div>
+                                            <div class="item-content">
+                                                <h4>FCRA Registration</h4>
+                                                <p>FCRA Registration & Annual Returns Filing</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-clipboard-check"></i></div>
+                                            <div class="item-content">
+                                                <h4>Annual Compliance</h4>
+                                                <p>Annual Compliance for Charitable Trusts & Societies</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal Services -->
+        <section id="legal" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Legal Support</span>
+                    </div>
+                    <h2>Legal <span class="accent">Services</span></h2>
+                    <p>Comprehensive legal solutions for housing societies, businesses, and property matters</p>
+                </div>
+
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <!-- Legal Services Card -->
+                    <div class="mega-service-card active">
+                       
+
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav">
+                                <button class="service-nav-btn active" data-target="housing-legal">
+                                    <i class="fas fa-building"></i>
+                                    Housing Society Legal Services
+                                </button>
+                                <button class="service-nav-btn" data-target="business-legal">
+                                    <i class="fas fa-briefcase"></i>
+                                    Business Legal Services
+                                </button>
+                                <button class="service-nav-btn" data-target="property-legal">
+                                    <i class="fas fa-home"></i>
+                                    Real Estate & Property Law
+                                </button>
+                                <button class="service-nav-btn" data-target="dispute-legal">
+                                    <i class="fas fa-gavel"></i>
+                                    Legal Dispute Resolution
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- Housing Society Legal Services -->
+                                <div class="service-panel active" id="housing-legal">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-signature"></i></div>
+                                            <div class="item-content">
+                                                <h4>Society Registration</h4>
+                                                <p>Registration of Co-operative Housing Societies & Compliance</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-book"></i></div>
+                                            <div class="item-content">
+                                                <h4>Society Bye-laws</h4>
+                                                <p>Drafting & Amendment of Society Bye-laws</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-key"></i></div>
+                                            <div class="item-content">
+                                                <h4>Conveyance Services</h4>
+                                                <p>Deemed Conveyance & Conveyance of Land</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-search-dollar"></i></div>
+                                            <div class="item-content">
+                                                <h4>Title Verification</h4>
+                                                <p>Property Title Verification & Legal Due Diligence</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-balance-scale"></i></div>
+                                            <div class="item-content">
+                                                <h4>Dispute Resolution</h4>
+                                                <p>Maintenance Dispute Resolution & Defaulter Recovery (Section 101 under MCS Act)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-envelope"></i></div>
+                                            <div class="item-content">
+                                                <h4>Legal Notices</h4>
+                                                <p>Legal Notice for Non-Payment of Maintenance</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-clipboard-check"></i></div>
+                                            <div class="item-content">
+                                                <h4>RERA Compliance</h4>
+                                                <p>RERA Compliance & Disputes</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-users"></i></div>
+                                            <div class="item-content">
+                                                <h4>Meeting Support</h4>
+                                                <p>Legal Support for SGM, AGM & Managing Committee Meetings</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-contract"></i></div>
+                                            <div class="item-content">
+                                                <h4>Development Agreements</h4>
+                                                <p>Drafting of Legal Agreements for Builders & Redevelopment</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Business Legal Services -->
+                                <div class="service-panel" id="business-legal">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-contract"></i></div>
+                                            <div class="item-content">
+                                                <h4>Corporate Documentation</h4>
+                                                <p>Drafting & Reviewing MOA, AOA & LLP Agreements</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-sitemap"></i></div>
+                                            <div class="item-content">
+                                                <h4>Corporate Governance</h4>
+                                                <p>Corporate Governance & Secretarial Compliance</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-chart-line"></i></div>
+                                            <div class="item-content">
+                                                <h4>Business Valuation</h4>
+                                                <p>Business Valuation & Legal Due Diligence</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-handshake"></i></div>
+                                            <div class="item-content">
+                                                <h4>M&A Support</h4>
+                                                <p>Merger & Acquisition Support</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-trademark"></i></div>
+                                            <div class="item-content">
+                                                <h4>Intellectual Property</h4>
+                                                <p>Intellectual Property (Trademark, Copyright, Patent Registration & Protection)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-gavel"></i></div>
+                                            <div class="item-content">
+                                                <h4>Contract Disputes</h4>
+                                                <p>Breach of Contract & Litigation Services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                                            <div class="item-content">
+                                                <h4>Recovery Services</h4>
+                                                <p>Legal Notices & Recovery of Outstanding Dues</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Real Estate & Property Law -->
+                                <div class="service-panel" id="property-legal">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-signature"></i></div>
+                                            <div class="item-content">
+                                                <h4>Property Agreements</h4>
+                                                <p>Drafting of Lease, Sale & Rent Agreements</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-gift"></i></div>
+                                            <div class="item-content">
+                                                <h4>Property Transfers</h4>
+                                                <p>Preparation of Gift Deeds & Transfer Deeds</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-building"></i></div>
+                                            <div class="item-content">
+                                                <h4>Development Agreements</h4>
+                                                <p>Builder & Redevelopment Agreements</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-balance-scale"></i></div>
+                                            <div class="item-content">
+                                                <h4>Property Disputes</h4>
+                                                <p>Property Dispute Litigation & Resolution</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-receipt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Property Tax</h4>
+                                                <p>Stamp Duty & Property Tax Compliance</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Legal Dispute Resolution -->
+                                <div class="service-panel" id="dispute-legal">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-handshake"></i></div>
+                                            <div class="item-content">
+                                                <h4>Mediation Services</h4>
+                                                <p>Mediation & Arbitration Services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-gavel"></i></div>
+                                            <div class="item-content">
+                                                <h4>Consumer Court</h4>
+                                                <p>Consumer Court Cases</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-money-check"></i></div>
+                                            <div class="item-content">
+                                                <h4>Cheque Cases</h4>
+                                                <p>Cheque Bounce & Recovery Cases (NI Act, Section 138)</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                                            <div class="item-content">
+                                                <h4>Debt Recovery</h4>
+                                                <p>Debt Recovery via Legal Notices & Litigation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-users"></i></div>
+                                            <div class="item-content">
+                                                <h4>Labor Disputes</h4>
+                                                <p>Employment & Labour Law Disputes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facility & Management Services -->
+        <section id="facility" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Facility Management</span>
+                    </div>
+                    <h2>Facility & <span class="accent">Management Services</span></h2>
+                    <p>Professional facility and property management solutions for housing societies</p>
+                </div>
+
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <div class="mega-service-card active">
+                      
+
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav">
+                                <button class="service-nav-btn active" data-target="management-staff">
+                                    <i class="fas fa-user-tie"></i>
+                                    Management Staff
+                                </button>
+                                <button class="service-nav-btn" data-target="security-housekeeping">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Security & Housekeeping
+                                </button>
+                                <button class="service-nav-btn" data-target="maintenance-landscaping">
+                                    <i class="fas fa-screwdriver-wrench"></i>
+                                    Maintenance & Landscaping
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- Management Staff -->
+                                <div class="service-panel active" id="management-staff">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-user-gear"></i></div>
+                                            <div class="item-content">
+                                                <h4>Facility Manager</h4>
+                                                <p>Professional facility management for housing societies</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-building-user"></i></div>
+                                            <div class="item-content">
+                                                <h4>Property Manager</h4>
+                                                <p>Expert property management and maintenance services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-clipboard-check"></i></div>
+                                            <div class="item-content">
+                                                <h4>Compliance Officer</h4>
+                                                <p>Ensuring adherence to all regulatory requirements</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-users-gear"></i></div>
+                                            <div class="item-content">
+                                                <h4>Society Manager</h4>
+                                                <p>Day-to-day society operations and administration</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Security & Housekeeping -->
+                                <div class="service-panel" id="security-housekeeping">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-shield-alt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Security Services</h4>
+                                                <p>24/7 security personnel and surveillance management</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-broom"></i></div>
+                                            <div class="item-content">
+                                                <h4>Housekeeping Services</h4>
+                                                <p>Professional cleaning and maintenance services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-wrench"></i></div>
+                                            <div class="item-content">
+                                                <h4>Plumbing Services</h4>
+                                                <p>Regular maintenance and emergency plumbing support</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-bolt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Electrical Services</h4>
+                                                <p>Electrical maintenance and repair services</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Maintenance & Landscaping -->
+                                <div class="service-panel" id="maintenance-landscaping">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-tree"></i></div>
+                                            <div class="item-content">
+                                                <h4>Gardening Services</h4>
+                                                <p>Professional garden maintenance and upkeep</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-leaf"></i></div>
+                                            <div class="item-content">
+                                                <h4>Landscaping Services</h4>
+                                                <p>Landscape design and maintenance services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-recycle"></i></div>
+                                            <div class="item-content">
+                                                <h4>Waste Management</h4>
+                                                <p>Systematic waste collection and disposal</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-bug"></i></div>
+                                            <div class="item-content">
+                                                <h4>Pest Control</h4>
+                                                <p>Regular pest control and prevention services</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AMC & Installation Services -->
+        <section id="amc" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Maintenance Contracts</span>
+                    </div>
+                    <h2>AMC & <span class="accent">Installation Services</span></h2>
+                    <p>Comprehensive Annual Maintenance Contracts and installation solutions</p>
+                </div>
+
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <div class="mega-service-card active">
+                       
+
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav">
+                                <button class="service-nav-btn active" data-target="equipment-amc">
+                                    <i class="fas fa-tools"></i>
+                                    Equipment AMC
+                                </button>
+                                <button class="service-nav-btn" data-target="safety-systems">
+                                    <i class="fas fa-fire-extinguisher"></i>
+                                    Safety Systems
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- Equipment AMC -->
+                                <div class="service-panel active" id="equipment-amc">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-plug"></i></div>
+                                            <div class="item-content">
+                                                <h4>DG AMC & Installation</h4>
+                                                <p>Diesel generator maintenance and installation services</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-elevator"></i></div>
+                                            <div class="item-content">
+                                                <h4>Lift AMC & Installation</h4>
+                                                <p>Elevator maintenance, repair and installation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-video"></i></div>
+                                            <div class="item-content">
+                                                <h4>CCTV AMC & Installation</h4>
+                                                <p>Surveillance system maintenance and setup</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-water"></i></div>
+                                            <div class="item-content">
+                                                <h4>Water Tank Cleaning</h4>
+                                                <p>UG & OH tanks cleaning and maintenance</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Safety Systems -->
+                                <div class="service-panel" id="safety-systems">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-fire"></i></div>
+                                            <div class="item-content">
+                                                <h4>Fire Safety AMC & Installation</h4>
+                                                <p>Fire safety system maintenance and installation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-bolt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Electrical Audit</h4>
+                                                <p>Comprehensive electrical system inspection and audit</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loan Services -->
+        <section id="loan" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Financial Assistance</span>
+                    </div>
+                    <h2>Loan <span class="accent">Services</span></h2>
+                    <p>Tailored loan solutions to meet your financial needs</p>
+                </div>
+
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <div class="mega-service-card active">
+                      
+
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav">
+                                <button class="service-nav-btn active" data-target="personal-loans">
+                                    <i class="fas fa-user"></i>
+                                    Personal & Education
+                                </button>
+                                <button class="service-nav-btn" data-target="property-loans">
+                                    <i class="fas fa-home"></i>
+                                    Property Loans
+                                </button>
+                                <button class="service-nav-btn" data-target="other-loans">
+                                    <i class="fas fa-money-check"></i>
+                                    Other Loans
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- Personal & Education Loans -->
+                                <div class="service-panel active" id="personal-loans">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-user"></i></div>
+                                            <div class="item-content">
+                                                <h4>Personal Loan</h4>
+                                                <p>Quick personal loans with minimal documentation</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-graduation-cap"></i></div>
+                                            <div class="item-content">
+                                                <h4>Education Loan</h4>
+                                                <p>Financial support for higher education</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-car"></i></div>
+                                            <div class="item-content">
+                                                <h4>Vehicle Loan</h4>
+                                                <p>Financing for vehicle purchases</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Property Loans -->
+                                <div class="service-panel" id="property-loans">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-home"></i></div>
+                                            <div class="item-content">
+                                                <h4>Home Loan</h4>
+                                                <p>Housing loans with competitive interest rates</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-building"></i></div>
+                                            <div class="item-content">
+                                                <h4>Mortgage Loan</h4>
+                                                <p>Loans against property for various needs</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-plus"></i></div>
+                                            <div class="item-content">
+                                                <h4>Top-Up on Home Loans</h4>
+                                                <p>Additional funding on existing home loans</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Other Loans -->
+                                <div class="service-panel" id="other-loans">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-piggy-bank"></i></div>
+                                            <div class="item-content">
+                                                <h4>Loans Against Fixed Deposits</h4>
+                                                <p>Quick loans against your fixed deposits</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solar Services -->
+        <section id="solar" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Renewable Energy</span>
+                    </div>
+                    <h2>Solar <span class="accent">Services</span></h2>
+                    <p>Sustainable energy solutions for residential and commercial properties</p>
+                </div>
+
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <div class="mega-service-card active">
+                       
+
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav">
+                                <button class="service-nav-btn active" data-target="solar-installation">
+                                    <i class="fas fa-solar-panel"></i>
+                                    Solar Installation
+                                </button>
+                                <button class="service-nav-btn" data-target="solar-systems">
+                                    <i class="fas fa-plug"></i>
+                                    Solar Systems
+                                </button>
+                                <button class="service-nav-btn" data-target="solar-financing">
+                                    <i class="fas fa-hand-holding-dollar"></i>
+                                    Solar Financing
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- Solar Installation -->
+                                <div class="service-panel active" id="solar-installation">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-home"></i></div>
+                                            <div class="item-content">
+                                                <h4>Residential Solar Panel Installation</h4>
+                                                <p>Solar solutions for individual homes</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-building"></i></div>
+                                            <div class="item-content">
+                                                <h4>Housing Society Solar System Installation</h4>
+                                                <p>Large-scale solar installations for housing societies</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-industry"></i></div>
+                                            <div class="item-content">
+                                                <h4>Commercial & Industrial Solar Installation</h4>
+                                                <p>Solar solutions for businesses and industrial facilities</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Solar Systems -->
+                                <div class="service-panel" id="solar-systems">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-plug"></i></div>
+                                            <div class="item-content">
+                                                <h4>On-Grid, Off-Grid & Hybrid Solar Systems</h4>
+                                                <p>Customized solar system solutions for all needs</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Solar Net Metering Solutions</h4>
+                                                <p>Net metering setup and configuration</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Solar Financing -->
+                                <div class="service-panel" id="solar-financing">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-money-bill"></i></div>
+                                            <div class="item-content">
+                                                <h4>Solar Loan & EMI Financing Options</h4>
+                                                <p>Flexible financing solutions for solar installations</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                                            <div class="item-content">
+                                                <h4>Government Subsidy Assistance</h4>
+                                                <p>Help with PM KUSUM and Solar Rooftop Scheme</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-file-contract"></i></div>
+                                            <div class="item-content">
+                                                <h4>Power Purchase Agreements</h4>
+                                                <p>PPA arrangements for housing societies</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insurance Services -->
+        <section id="insurance" class="service-detail">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <div class="badge-container">
+                        <span class="badge">Insurance Solutions</span>
+                    </div>
+                    <h2>Insurance <span class="accent">Services</span></h2>
+                    <p>Comprehensive insurance solutions for housing societies and individuals</p>
+                </div>
+
+                <!-- Interactive Service Cards -->
+                <div class="service-cards-container">
+                    <div class="mega-service-card active">
+                      
+                        <div class="service-details">
+                            <!-- Service Navigation -->
+                            <div class="service-nav" role="tablist" aria-label="Service categories">
+                                <button class="service-nav-btn active" role="tab" aria-selected="true" aria-controls="property-insurance" data-target="property-insurance">
+                                    <i class="fas fa-building" aria-hidden="true"></i>
+                                    Property Insurance
+                                </button>
+                                <button class="service-nav-btn" role="tab" aria-selected="false" aria-controls="liability-insurance" data-target="liability-insurance">
+                                    <i class="fas fa-user-shield" aria-hidden="true"></i>
+                                    Liability & Staff Insurance
+                                </button>
+                                <button class="service-nav-btn" role="tab" aria-selected="false" aria-controls="vehicle-insurance" data-target="vehicle-insurance">
+                                    <i class="fas fa-car" aria-hidden="true"></i>
+                                    Vehicle Insurance
+                                </button>
+                            </div>
+
+                            <!-- Service Content Panels -->
+                            <div class="service-content-wrapper">
+                                <!-- Property Insurance -->
+                                <div class="service-panel active" id="property-insurance" role="tabpanel" aria-labelledby="property-insurance-tab">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-building"></i></div>
+                                            <div class="item-content">
+                                                <h4>Building Insurance</h4>
+                                                <p>Comprehensive coverage for your society's building structure and common areas</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-home"></i></div>
+                                            <div class="item-content">
+                                                <h4>Property Coverage</h4>
+                                                <p>Protection for society assets and equipment against damage or loss</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-shield-alt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Natural Disaster Protection</h4>
+                                                <p>Coverage against natural calamities and unforeseen events</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Liability & Staff Insurance -->
+                                <div class="service-panel" id="liability-insurance">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-gavel"></i></div>
+                                            <div class="item-content">
+                                                <h4>Third-Party Liability Insurance</h4>
+                                                <p>Protection against third-party claims and damages</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-user-shield"></i></div>
+                                            <div class="item-content">
+                                                <h4>Staff Insurance</h4>
+                                                <p>Insurance coverage for society staff members</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-heart"></i></div>
+                                            <div class="item-content">
+                                                <h4>Group Health Insurance</h4>
+                                                <p>Health coverage for society members and staff</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Vehicle Insurance -->
+                                <div class="service-panel" id="vehicle-insurance">
+                                    <div class="service-grid">
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-car"></i></div>
+                                            <div class="item-content">
+                                                <h4>Motor Vehicle Insurance</h4>
+                                                <p>Comprehensive coverage for cars and two-wheelers</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-truck"></i></div>
+                                            <div class="item-content">
+                                                <h4>Commercial Vehicle Insurance</h4>
+                                                <p>Insurance for society-owned utility vehicles</p>
+                                            </div>
+                                        </div>
+                                        <div class="service-item">
+                                            <div class="item-icon"><i class="fas fa-shield-alt"></i></div>
+                                            <div class="item-content">
+                                                <h4>Third-Party Coverage</h4>
+                                                <p>Mandatory third-party liability protection</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="why-choose-us">
+            <div class="container">
+                <div class="section-header animate-fade-up">
+                    <h2>Why Choose <span class="accent">Housing Care</span></h2>
+                    <p>Experience excellence in housing society management</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card animate-fade-left">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Professional Excellence</h3>
+                        <p>Our team of experienced professionals ensures high-quality service delivery.</p>
+                    </div>
+
+                    <div class="feature-card animate-fade-left" data-delay="100">
+                        <i class="fas fa-clock"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Round-the-clock assistance for all your housing society needs.</p>
+                    </div>
+
+                    <div class="feature-card animate-fade-right" data-delay="200">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Transparent Operations</h3>
+                        <p>Clear communication and complete transparency in all processes.</p>
+                    </div>
+
+                    <div class="feature-card animate-fade-right" data-delay="300">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Customized Solutions</h3>
+                        <p>Tailored services to meet your society's specific requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        // Load navbar and footer components
+        $(document).ready(function() {
+            $("#navbar-placeholder").load("/components/navbar.html", function() {
+                $.getScript("/js/navigation.js");
+            });
+            $("#footer-placeholder").load("/components/footer.html");
+        });
+    </script>
+    <script src="/js/main.js"></script>
+    <script src="/js/animations.js"></script>
+    <!-- Service Filtering Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Service Tabs Functionality
+            const serviceTabs = document.querySelectorAll('.service-tab');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            serviceTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and panes
+                    serviceTabs.forEach(t => t.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabCategory = this.getAttribute('data-tab');
+                    document.querySelector(`.tab-pane[data-category="${tabCategory}"]`).classList.add('active');
+                });
+            });
+            
+            // Stats Counters Animation
+            function animateCounter(el) {
+                const target = parseInt(el.getAttribute('data-count'));
+                const suffix = el.innerText.replace(/[0-9]/g, '');
+                let current = 0;
+                const increment = target / 30; // Adjust for speed
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    el.innerText = Math.floor(current) + suffix;
+                }, 30);
+            }
+            
+            // Stats Filtering
+            const statsFilterBtns = document.querySelectorAll('.service-filters .filter-btn');
+            const statCards = document.querySelectorAll('.stat-card');
+            
+            statsFilterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    statsFilterBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get the filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter stat cards based on filter value
+                    statCards.forEach(card => {
+                        if (filterValue === 'all') {
+                            card.classList.remove('hidden');
+                        } else {
+                            if (card.getAttribute('data-category') === filterValue) {
+                                card.classList.remove('hidden');
+                            } else {
+                                card.classList.add('hidden');
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Initialize counter animation when stats section is in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counters = entry.target.querySelectorAll('.stat-number[data-count]');
+                        counters.forEach(counter => {
+                            animateCounter(counter);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            // Observe stats grid
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid) {
+                observer.observe(statsGrid);
+            }
+            
+            // Service Category Filtering
+            const categoryFilterBtns = document.querySelectorAll('.service-filters-container .filter-btn');
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            categoryFilterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryFilterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get the filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter cards based on filter value
+                    categoryCards.forEach(card => {
+                        // Show all cards if filter is "all"
+                        if (filterValue === 'all') {
+                            card.classList.remove('hidden');
+                        } else {
+                            // Check if card has the selected category
+                            if (card.getAttribute('data-category') === filterValue) {
+                                card.classList.remove('hidden');
+                            } else {
+                                card.classList.add('hidden');
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <style>
+        /* Service Tabs Styles */
+        .service-tabs-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            margin-top: 3rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .service-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 1rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: var(--border-radius);
+            white-space: nowrap;
+        }
+
+        .service-tab i {
+            font-size: 1rem;
+        }
+
+        .service-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-tab.active {
+            background: var(--accent-color);
+        }
+
+        .service-tab-content {
+            padding: 2rem;
+            color: white;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .tab-pane h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .tab-pane p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .service-tab {
+                min-width: 110px;
+                padding: 0.875rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .service-tabs {
+                justify-content: center;
+            }
+
+            .service-tab {
+                min-width: calc(25% - 0.5rem);
+                font-size: 0.9rem;
+            }
+
+            .tab-pane h3 {
+                font-size: 1.5rem;
+            }
+
+            .tab-pane p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-tabs-container {
+                margin-top: 2rem;
+            }
+
+            .service-tabs {
+                padding: 0.75rem;
+            }
+
+            .service-tab {
+                min-width: calc(33.333% - 0.5rem);
+                padding: 0.75rem;
+            }
+
+            .service-tab-content {
+                padding: 1.5rem;
+            }
+
+            .tab-pane h3 {
+                font-size: 1.25rem;
+            }
+
+            .tab-pane p {
+                font-size: 0.95rem;
+                margin-bottom: 1.25rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .service-tab {
+                min-width: calc(50% - 0.5rem);
+                font-size: 0.85rem;
+            }
+
+            .service-tab i {
+                font-size: 0.9rem;
+            }
+
+            .service-tab-content {
+                padding: 1.25rem;
+            }
+
+            .tab-pane h3 {
+                font-size: 1.2rem;
+            }
+
+            .tab-pane p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-tabs-container {
+                margin-top: 1.5rem;
+            }
+
+            .service-tabs {
+                padding: 0.5rem;
+                gap: 0.25rem;
+            }
+
+            .service-tab {
+                min-width: calc(50% - 0.25rem);
+                padding: 0.625rem;
+            }
+        }
+
+        /* Add this to ensure proper container width */
+        .hero .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero content responsive adjustments */
+        .hero-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html> 

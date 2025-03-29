@@ -1,0 +1,229 @@
+/* Mobile First Responsive Design */
+
+/* Base Mobile Styles (up to 768px) */
+@media screen and (max-width: 768px) {
+    /* Typography */
+    h1 {
+        font-size: 2.5rem !important;
+    }
+
+    h2 {
+        font-size: 2rem !important;
+    }
+
+    h3 {
+        font-size: 1.5rem !important;
+    }
+
+    /* Navigation */
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: white;
+        padding: 2rem;
+        box-shadow: -5px 0 15px var(--shadow-color);
+        z-index: 1000;
+    }
+
+    .mobile-menu .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 90vh;
+        padding-top: 60px;
+    }
+
+    .hero-text {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+    }
+
+    .contact-cards {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mission & Vision */
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    /* Services */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-contact p {
+        justify-content: center;
+    }
+}
+
+/* Tablet Styles (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Typography */
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.25rem;
+    }
+
+    /* Services */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small Desktop Styles (1024px - 1280px) */
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* Large Desktop Styles (1280px and above) */
+@media screen and (min-width: 1280px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* High Resolution Screens */
+@media screen and (min-width: 1920px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .mobile-menu-btn,
+    .cta-buttons,
+    .social-links {
+        display: none !important;
+    }
+
+    body {
+        color: black;
+        background: white;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+
+    .video-background,
+    .overlay,
+    .grid-pattern {
+        display: none;
+    }
+
+    .hero-text {
+        color: black;
+    }
+
+    .mission,
+    .vision,
+    .service-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #0000ff;
+        --accent-color: #ff0000;
+        --text-color: #000000;
+        --light-text: #000000;
+        --background-color: #ffffff;
+        --section-bg: #ffffff;
+        --border-color: #000000;
+    }
+
+    * {
+        border-color: #000000 !important;
+    }
+
+    a {
+        text-decoration: underline !important;
+    }
+
+    .btn {
+        border: 2px solid currentColor !important;
+    }
+} 
