@@ -12,13 +12,15 @@ Housing Care is a comprehensive website for a housing society management service
 - **Modern UI**: Clean, professional interface with smooth animations and transitions
 - **Service Catalog**: Comprehensive display of all housing management services
 - **Dynamic Career Page**: Job listings loaded from Google Sheets for easy updates
-- **Contact Forms**: Interactive contact forms for client inquiries
+- **Contact Forms**: Interactive contact forms for client inquiries with business hours
 - **Team Showcase**: Profile displays for team members and partners
 - **Video Backgrounds**: Engaging video backgrounds with overlay effects
 - **Glass-morphism Design**: Modern UI elements with glass-like effects
 - **Interactive Elements**: Smooth animations and hover effects
 - **Google Maps Integration**: Location visualization
 - **Component-based Architecture**: Reusable HTML components
+- **Legal Documentation**: Privacy Policy and Terms of Service pages
+- **Business Hours Display**: Clear information about operational hours
 
 ## Tech Stack
 
@@ -35,7 +37,7 @@ Housing Care is a comprehensive website for a housing society management service
   - Form validation
   - Dynamic content loading
 - **jQuery**: Simplified DOM manipulation and AJAX functionality
-- **Font Awesome**: Icon library for visual elements
+- **Font Awesome**: Icon library for visual elements (Free version under CC BY 4.0)
 - **Google Fonts**: Web fonts for typography (Inter and Poppins)
 - **Google Sheets API**: Dynamic job listings integration
 
@@ -50,8 +52,10 @@ housing-care-website/
 ├── pages/                   # Individual pages
 │   ├── about.html           # About page with team info and company history
 │   ├── services.html        # Services catalog with detailed descriptions
-│   ├── contact.html         # Contact information and form with map
-│   └── career.html          # Career opportunities with dynamic job listings
+│   ├── contact.html         # Contact information, business hours, and form with map
+│   ├── career.html          # Career opportunities with dynamic job listings
+│   ├── privacy-policy.html  # Privacy policy legal document
+│   └── terms.html           # Terms of service legal document
 ├── css/                     # Stylesheets
 │   ├── main.css             # Main styles and common elements
 │   ├── responsive.css       # Media queries for responsive design
@@ -59,15 +63,17 @@ housing-care-website/
 │   ├── normalize.css        # CSS reset for cross-browser consistency
 │   ├── navbar.css           # Navigation bar specific styles
 │   ├── footer.css           # Footer specific styles
-│   └── contact.css          # Contact page specific styles
+│   ├── contact.css          # Contact page specific styles
+│   ├── policy.css           # Styles for legal pages (privacy, terms)
+│   └── about.css            # About page specific styles
 ├── js/                      # JavaScript files
 │   ├── main.js              # Main functionality and initialization
 │   ├── navigation.js        # Navigation and page loading logic
 │   └── animations.js        # Animation triggers and effects
 ├── images/                  # Image assets
-│   ├── logo.png            # Company logo
-│   ├── Buildings.mp4       # Hero section video
-│   └── video-poster.jpg    # Video poster image
+│   ├── logo.png             # Company logo
+│   ├── Buildings.mp4        # Hero section video
+│   └── video-poster.jpg     # Video poster image
 └── fonts/                   # Custom font files (if any)
 ```
 
@@ -109,10 +115,12 @@ housing-care-website/
 - Job description templates
 - Application tracking system
 
-### 3. Contact Information
+### 3. Contact Information & Business Hours
 The contact page features a modern, engaging design with:
 - Full-screen video background with overlay
 - Glass-morphism contact cards with hover effects
+- Business hours section showing operating days and times
+- Friday closed hours clearly marked
 - Responsive grid layout for contact information
 - Interactive elements with smooth animations
 - Google Maps integration for location
@@ -120,7 +128,16 @@ The contact page features a modern, engaging design with:
 - Mobile-friendly design
 - Social media integration
 
-### 4. Design Features
+### 4. Legal Documentation
+- Privacy Policy page detailing data collection practices
+- Terms of Service page outlining usage terms
+- Mobile-responsive legal document design
+- Clear, well-structured sections
+- Contact information for legal inquiries
+- Last updated timestamps
+- Professional legal language appropriate for a static frontend website
+
+### 5. Design Features
 - Glass-morphism effects for modern UI
 - Video backgrounds with gradient overlays
 - Grid patterns for visual interest
@@ -167,6 +184,13 @@ To add new services:
 4. Test the new service section across all devices
 5. Update the service grid layout if necessary
 
+### Updating Business Hours
+To modify the business hours displayed on the contact page:
+
+1. Edit the hours-grid section in contact.html
+2. Update the weekday and Friday hours as needed
+3. Test the appearance on both desktop and mobile views
+
 ### Content Updates
 For general content updates:
 
@@ -203,6 +227,13 @@ The website is compatible with:
 - Input sanitization
 - XSS protection
 - CSRF protection
+
+## External Dependencies
+
+- **Font Awesome 6.5.1**: Used for icons (Free version under CC BY 4.0 license)
+- **Google Fonts**: Inter and Poppins fonts
+- **jQuery 3.7.1**: JavaScript library for DOM manipulation
+- **Google Maps API**: For location embed on contact page
 
 ## License
 
