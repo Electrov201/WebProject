@@ -25,6 +25,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         h1 {text-align: center;}
+        
+        /* Hero Section Styling */
+        .hero {
+            min-height: 100vh !important;
+            border-radius: 0 0 2rem 2rem !important;
+            padding: calc(var(--navbar-height) + 2rem) 0 4rem !important;
+        }
+        
+        .video-background {
+            border-radius: 0 0 2rem 2rem !important;
+            overflow: hidden !important;
+        }
     </style>
 </head>
 <body>
@@ -36,8 +48,8 @@
         <!-- Contact Hero -->
         <section class="hero">
             <div class="video-background">
-                <video autoplay loop muted playsinline poster="../images/video-poster.jpg">
-                    <source src="../images/Buildings.mp4" type="video/mp4">
+                <video autoplay loop muted playsinline poster="/images/video-poster.jpg">
+                    <source src="/images/Buildings.mp4" type="video/mp4">
                 </video>
                 <div class="overlay"></div>
                 <div class="grid-pattern"></div>
