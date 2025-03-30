@@ -76,16 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         scrollTimeout = setTimeout(() => {
-            const currentScroll = window.pageYOffset;
-            
+        const currentScroll = window.pageYOffset;
+        
             // Add/remove scrolled class for navbar background
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            lastScroll = currentScroll;
+        if (currentScroll > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
             scrollTimeout = null;
         }, 10);
     }

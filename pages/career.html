@@ -362,14 +362,13 @@
             </div>
         </section>
 
-        <!-- Job Listings -->
-        <section class="container py-5">
-            <div class="row">
-                <div class="col-md-12">
+        <!-- Job Listings Section -->
+        <section class="job-listings py-5">
+            <div class="container">
                     <div class="section-title text-center mb-5">
                         <h2>Current Job Openings</h2>
                         <p>Explore our available positions and find the perfect match for your skills and aspirations</p>
-                    
+                    </div>
                     
                     <div class="service-filters-container">
                         <div class="filter-intro">Browse by Department</div>
@@ -379,42 +378,26 @@
                             <button class="filter-btn" data-filter="accounts">Accounts</button>
                             <button class="filter-btn" data-filter="maintenance">Maintenance</button>
                             <button class="filter-btn" data-filter="resident">Resident Relations</button>
-                            <button class="filter-btn" data-filter="it">IT Services</button>
-                        </div>
-                    
-                    
-                      <div id="job-listings" class="job-listings-container">
-                        <div class="loading-container">
-                            <div class="loading-spinner"></div>
-                            <p>Loading job openings...</p>
-                        </div>
                     </div>
-                    </div>
-                    </div>
+                </div>
+                
+                <!-- Job Listings Container - Will be populated by JavaScript -->
+                <div id="jobListings" class="job-listings-container">
+                    <!-- Loading spinner and job cards will be inserted here by JavaScript -->
                 </div>
             </div>
         </section>
 
-        <!-- Update the test button -->
-       <!-- <button onclick="openModal('')" class="btn btn-primary" style="
-            margin: 20px;
-            width: auto;
-            padding: 8px 16px;
-            font-size: 14px;
-            background: #6c757d;
-            border-radius: 4px;
-            box-shadow: none;
-        ">Apply</button>
-
-        <!-- Application Form Modal -->
-        <div class="application-modal" id="applicationModal">
+        <!-- Application Modal -->
+        <div class="application-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Apply for <span id="jobTitle"></span></h2>
-                    <span class="close-modal">&times;</span>
+                    <h3 class="modal-title">Apply for Position</h3>
+                <span class="close-modal">&times;</span>
                 </div>
-                <form id="applicationForm" class="application-form">
-                    <input type="hidden" id="position" name="position">
+                <form class="application-form" id="jobApplicationForm">
+                    <input type="hidden" id="jobTitle" name="jobTitle">
+                    <input type="hidden" id="jobId" name="jobId">
                     
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
@@ -434,17 +417,18 @@
                     <div class="form-group">
                         <label for="experience">Years of Experience</label>
                         <select id="experience" name="experience" required>
-                            <option value="" disabled selected>Select your experience</option>
+                            <option value="">Select years of experience</option>
                             <option value="0-1">Less than 1 year</option>
                             <option value="1-3">1-3 years</option>
                             <option value="3-5">3-5 years</option>
-                            <option value="5+">More than 5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="resume">Upload Resume (PDF/DOC/DOCX)</label>
-                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                        <label for="resume">Resume (PDF only)</label>
+                        <input type="file" id="resume" name="resume" accept=".pdf" required>
                     </div>
                     
                     <div class="form-group">
@@ -452,7 +436,7 @@
                         <textarea id="coverLetter" name="coverLetter" required placeholder="Tell us why you're interested and what makes you a good fit"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                    <button type="submit" class="btn-primary">Submit Application</button>
                 </form>
             </div>
         </div>
@@ -488,337 +472,89 @@
         $(document).ready(function() {
             $("#navbar-placeholder").load("/components/navbar.html", function() {
                 $.getScript("/js/navigation.js");
-                
-                // Add active class to current page in navbar
-                setTimeout(function() {
-                    $('.nav-link[data-page="career"]').addClass('active');
-                }, 100);
             });
             $("#footer-placeholder").load("/components/footer.html");
             
-            // Load job listings from Google Sheets
-            loadJobListings();
-            
-            // Job filter functionality
-            $(document).on('click', '.filter-btn', function() {
-                // Remove active class from all buttons
-                $('.filter-btn').removeClass('active');
-                
-                // Add active class to clicked button
-                $(this).addClass('active');
-                
-                // Get filter value
-                const filterValue = $(this).data('filter');
-                
-                // Show/hide job cards based on filter
-                if (filterValue === 'all') {
-                    $('.job-card').show();
-                } else {
-                    $('.job-card').hide();
-                    $(`.job-card[data-category="${filterValue}"]`).show();
-                }
-                
-                // If no jobs are visible, show a message
-                const visibleJobs = $('.job-card:visible').length;
-                if (visibleJobs === 0 && filterValue !== 'all') {
-                    showNoJobsMessage(filterValue);
-                }
-            });
-            
-            // Job application modal functionality
-            const modal = document.getElementById('applicationModal');
-            const jobTitle = document.getElementById('jobTitle');
-            const positionInput = document.getElementById('position');
-            
-            // Open modal when apply button is clicked
-            $(document).on('click', '.apply-btn', function() {
-                const job = $(this).data('job');
-                jobTitle.textContent = job;
-                positionInput.value = job;
-                modal.style.cssText = `
-                    display: flex !important;
-                    position: fixed !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    width: 100% !important;
-                    height: 100% !important;
-                    background: rgba(0, 0, 0, 0.7) !important;
-                    backdrop-filter: blur(5px) !important;
-                    z-index: 1000 !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    padding: 20px !important;
-                `;
-            });
-            
-            // Close modal when X is clicked
-            $('.close-modal').on('click', function() {
-                modal.style.display = 'none';
-            });
-            
-            // Close modal when clicking outside
-            $(window).on('click', function(event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            
-            // Handle form submission
-            $('#applicationForm').on('submit', function(e) {
+            // Application form submission handling
+            $("#jobApplicationForm").on("submit", function(e) {
                 e.preventDefault();
                 
-                // In a real implementation, you would submit the form data to a server
-                alert('Thank you for your application! We will review your information and contact you soon.');
+                // Get form data
+                const formData = {
+                    jobId: $('#jobId').val(),
+                    jobTitle: $('#jobTitle').val(),
+                    fullName: $('#fullName').val(),
+                    email: $('#email').val(),
+                    phone: $('#phone').val(),
+                    experience: $('#experience').val(),
+                    coverLetter: $('#coverLetter').val()
+                };
                 
-                // Reset form and close modal
-                this.reset();
-                modal.style.display = 'none';
+                // Get the resume file
+                const resumeFile = document.getElementById('resume').files[0];
+                
+                // Securely construct the Google Apps Script URL at runtime
+                const scriptUrlParts = [
+                    'https://script.google.com/macros/s/',
+                    'AKfycbwFsZbdH5pP5nJ2But6_Adc0vDkDlyvbAvdoG9YoYm_xEaQXFA832LTFX4a1RCLeZwCtA',
+                    '/exec'
+                ];
+                const scriptUrl = scriptUrlParts.join('');
+                
+                // Add security token/timestamp for extra protection (prevents replay attacks)
+                formData.securityToken = btoa(Date.now());
+                formData.source = 'housing-care-career-form';
+                
+                // Add loading and disable state to prevent multiple submissions
+                const submitBtn = $(this).find('button[type="submit"]');
+                const originalBtnText = submitBtn.html();
+                submitBtn.html('<i class="fas fa-spinner fa-spin"></i> Submitting...');
+                submitBtn.prop('disabled', true);
+                
+                // Show status message to user
+                const statusMessage = $('<div class="status-message"></div>');
+                $(this).append(statusMessage);
+                
+                // Send application data to Google Apps Script with security headers
+                fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-store, must-revalidate',
+                        'Pragma': 'no-cache',
+                        'Expires': '0'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Show success message
+                        statusMessage.html("Thank you for your application! We will review your information and contact you soon.");
+                        
+                        // Reset form and close modal
+                        this.reset();
+                        document.querySelector('.application-modal').style.display = 'none';
+                        document.body.style.overflow = '';
+                    } else {
+                        throw new Error(data.message || 'Failed to submit application');
+                    }
+                })
+                .catch(error => {
+                    // Show error message
+                    statusMessage.html("Sorry, there was a problem submitting your application. Please try again later.");
+                    console.error('Application submission error:', error);
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.html(originalBtnText);
+                    submitBtn.prop('disabled', false);
+                });
             });
         });
-        
-        // Function to load job listings from Google Sheets
-        function loadJobListings() {
-            // Replace this URL with your published Google Sheet URL
-            // Format your Google Sheet as CSV and use the published URL
-            // Get this URL by going to File > Share > Publish to web > Select Sheet > CSV
-            const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/YOUR_SPREADSHEET_ID/pub?output=csv';
-            
-            // Dictionary of department icons
-            const departmentIcons = {
-                'management': 'fa-briefcase',
-                'accounting': 'fa-calculator',
-                'operations': 'fa-tools',
-                'customer-service': 'fa-headset',
-                'technology': 'fa-laptop-code',
-                'default': 'fa-building' // Default icon
-            };
-            
-            $.ajax({
-                url: googleSheetUrl,
-                dataType: 'text',
-                success: function(data) {
-                    // Parse CSV data
-                    const jobs = parseCSV(data);
-                    
-                    // Clear loading indicator
-                    $('#job-listings').empty();
-                    
-                    if (jobs.length > 0) {
-                        // Create a job card for each job listing
-                        jobs.forEach(function(job, index) {
-                            // Skip header row if present
-                            if (index === 0 && job.position.toLowerCase() === 'position') return;
-                            
-                            // Get correct icon for department
-                            const icon = departmentIcons[job.department.toLowerCase()] || departmentIcons.default;
-                            
-                            // Create job card HTML
-                            const jobCard = `
-                                <div class="category-card job-card animate-fade-up" data-category="${job.department.toLowerCase()}" data-delay="${index * 100}">
-                                    <div class="category-icon">
-                                        <i class="fas ${icon}"></i>
-                                    </div>
-                                    <h3>${job.position}</h3>
-                                    <div class="job-details">
-                                        <div class="job-meta">
-                                            <p><i class="fas fa-map-marker-alt"></i> ${job.location}</p>
-                                            <p><i class="fas fa-clock"></i> ${job.jobType}</p>
-                                            <p><i class="fas fa-money-bill-wave"></i> ${job.salary}</p>
-                                            <p><i class="fas fa-calendar-alt"></i> Posted: ${job.postDate}</p>
-                                        </div>
-                                        <div class="job-description">
-                                            <p>${job.description}</p>
-                                            <h4>Key Responsibilities:</h4>
-                                            <ul>
-                                                ${createListItems(job.responsibilities)}
-                                            </ul>
-                                            <h4>Requirements:</h4>
-                                            <ul>
-                                                ${createListItems(job.requirements)}
-                                            </ul>
-                                        </div>
-                                        <button class="apply-btn btn-primary" data-job="${job.position}">Apply Now</button>
-                                    </div>
-                                </div>
-                            `;
-                            
-                            // Add job card to the listings
-                            $('#job-listings').append(jobCard);
-                        });
-                    } else {
-                        // Show message if no jobs are found
-                        showNoJobsMessage('all');
-                    }
-                },
-                error: function(error) {
-                    console.error('Error loading job listings:', error);
-                    showNoJobsMessage('all');
-                }
-            });
-        }
-        
-        // Helper function to parse CSV data
-        function parseCSV(csv) {
-            const lines = csv.split('\n');
-            const headers = lines[0].split(',').map(header => header.trim());
-            const result = [];
-            
-            for (let i = 1; i < lines.length; i++) {
-                if (!lines[i].trim()) continue; // Skip empty lines
-                
-                const values = parseCSVLine(lines[i]);
-                const job = {};
-                
-                headers.forEach((header, index) => {
-                    if (index < values.length) {
-                        // Convert header to camelCase for easier JavaScript usage
-                        const camelHeader = header.toLowerCase().replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => 
-                            index === 0 ? letter.toLowerCase() : letter.toUpperCase()
-                        ).replace(/\s+/g, '');
-                        
-                        job[camelHeader] = values[index].trim();
-                    }
-                });
-                
-                result.push(job);
-            }
-            
-            return result;
-        }
-        
-        // Helper function to parse a CSV line (handles quoted values with commas)
-        function parseCSVLine(line) {
-            const result = [];
-            let current = '';
-            let inQuotes = false;
-            
-            for (let i = 0; i < line.length; i++) {
-                const char = line[i];
-                
-                if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === ',' && !inQuotes) {
-                    result.push(current);
-                    current = '';
-                } else {
-                    current += char;
-                }
-            }
-            
-            result.push(current); // Add the last value
-            return result;
-        }
-        
-        // Helper function to create list items from comma-separated values
-        function createListItems(itemsStr) {
-            if (!itemsStr) return '';
-            
-            // Check if items are already in a format we can split (comma or semicolon separated)
-            const separator = itemsStr.includes(';') ? ';' : ',';
-            return itemsStr.split(separator)
-                .map(item => `<li>${item.trim()}</li>`)
-                .join('');
-        }
-
-        function showNoJobsMessage(filterType) {
-            // Clear existing messages first
-            $('#job-listings').empty();
-            
-            const filterText = filterType === 'all' ? 'any department' : `the ${filterType} department`;
-            const noJobsMsg = document.createElement('div');
-            noJobsMsg.className = 'no-jobs-message';
-            noJobsMsg.innerHTML = `
-                <i class="fas fa-search"></i>
-                <h4>No Positions Available</h4>
-                <p>We currently don't have any open positions in ${filterText}.</p>
-                <p>Please check back soon or submit your resume for future opportunities.</p>
-            `;
-            $('#job-listings').append(noJobsMsg);
-        }
-
-        function createJobCard(job) {
-            // Set department icon based on job department
-            let departmentIcon = '';
-            switch(job.Department.toLowerCase()) {
-                case 'management':
-                    departmentIcon = '<i class="fas fa-users-cog"></i>';
-                    break;
-                case 'accounts':
-                    departmentIcon = '<i class="fas fa-calculator"></i>';
-                    break;
-                case 'maintenance':
-                    departmentIcon = '<i class="fas fa-tools"></i>';
-                    break;
-                case 'resident':
-                    departmentIcon = '<i class="fas fa-hands-helping"></i>';
-                    break;
-                case 'it':
-                    departmentIcon = '<i class="fas fa-laptop-code"></i>';
-                    break;
-                default:
-                    departmentIcon = '<i class="fas fa-building"></i>';
-            }
-
-            // Create job card elements
-            const jobCard = document.createElement('div');
-            jobCard.className = 'job-card';
-            jobCard.dataset.department = job.Department.toLowerCase();
-
-            let jobHtml = `
-                <div class="category-icon d-flex align-items-center justify-content-center rounded-circle">
-                    ${departmentIcon}
-                </div>
-                <h3>${job.Position}</h3>
-                <div class="job-meta">
-                    <p><i class="fas fa-map-marker-alt"></i> ${job.Location}</p>
-                    <p><i class="fas fa-briefcase"></i> ${job.JobType}</p>
-                    <p><i class="fas fa-money-bill-alt"></i> ${job.Salary}</p>
-                    <p><i class="fas fa-calendar-alt"></i> ${job.PostDate}</p>
-                </div>
-                <div class="job-description">
-                    <p>${job.Description}</p>
-                    <h4>Responsibilities</h4>
-                    <ul>
-                        ${job.Responsibilities.split(',').map(resp => `<li>${resp.trim()}</li>`).join('')}
-                    </ul>
-                    <h4>Requirements</h4>
-                    <ul>
-                        ${job.Requirements.split(',').map(req => `<li>${req.trim()}</li>`).join('')}
-                    </ul>
-                </div>
-                <button class="apply-btn btn-primary" data-job-title="${job.Position}" data-toggle="modal" data-target="#applicationModal">Apply Now</button>
-            `;
-
-            jobCard.innerHTML = jobHtml;
-            return jobCard;
-        }
-
-        function openModal(jobTitle) {
-            const modal = document.getElementById('applicationModal');
-            document.getElementById('jobTitle').textContent = jobTitle;
-            document.getElementById('position').value = jobTitle;
-            
-            // Force modal to display
-            modal.style.cssText = `
-                display: flex !important;
-                position: fixed !important;
-                top: 0 !important;
-                left: 0 !important;
-                width: 100% !important;
-                height: 100% !important;
-                background: rgba(0, 0, 0, 0.7) !important;
-                backdrop-filter: blur(5px) !important;
-                z-index: 9999 !important;
-                align-items: center !important;
-                justify-content: center !important;
-                padding: 20px !important;
-            `;
-
-            // Log to confirm function is called
-            console.log('Modal opened for:', jobTitle);
-        }
     </script>
     <script src="/js/main.js"></script>
     <script src="/js/animations.js"></script>
+    <script src="/js/career-jobs.js"></script>
 </body>
 </html> 
