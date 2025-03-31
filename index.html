@@ -236,13 +236,19 @@
     <script>
         // Load navbar and footer components
         $(document).ready(function() {
+            // Load navbar
             $("#navbar-placeholder").load("/components/navbar.html", function() {
-                $.getScript("/js/navigation.js");
+                // Load navigation.js after navbar is loaded
+                $.getScript("/js/navigation.js", function() {
+                    console.log("Navigation script loaded");
+                });
             });
+            
+            // Load footer
             $("#footer-placeholder").load("/components/footer.html");
         });
     </script>
-    <script src="/js/main.js"></script>
     <script src="/js/animations.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html> 
