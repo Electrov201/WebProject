@@ -2,120 +2,222 @@
 
 /* Base Mobile Styles (up to 768px) */
 @media screen and (max-width: 768px) {
-    /* Typography */
-    h1 {
-        font-size: 2.5rem !important;
-    }
-
-    h2 {
-        font-size: 2rem !important;
-    }
-
-    h3 {
-        font-size: 1.5rem !important;
+    /* General Layout */
+    .container {
+        padding: 0 1rem;
     }
 
     /* Navigation */
-    .nav-links {
-        display: none;
+    .navbar {
+        padding: 1rem;
     }
 
-    .mobile-menu-btn {
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: #fff;
+        flex-direction: column;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 1.5rem 0;
+    }
+
+    .hamburger {
         display: block;
     }
 
-    .mobile-menu {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: white;
-        padding: 2rem;
-        box-shadow: -5px 0 15px var(--shadow-color);
-        z-index: 1000;
-    }
-
-    .mobile-menu .nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
     /* Hero Section */
-    .hero {
-        min-height: 90vh;
-        padding-top: 60px;
+    .hero-content {
+        padding: 2rem 1rem;
     }
 
-    .hero-text {
+    .hero-text h1 {
+        font-size: 2.5rem;
         text-align: center;
-        margin: 0 auto;
     }
 
-    .cta-buttons {
-        justify-content: center;
+    .hero-text p {
+        font-size: 1.1rem;
+        text-align: center;
     }
 
-    .contact-cards {
-        grid-template-columns: 1fr;
+    /* Job Listings Section */
+    .job-listings {
+        padding: 2rem 0;
     }
 
-    /* Mission & Vision */
-    .grid-2 {
-        grid-template-columns: 1fr;
+    .section-title h2 {
+        font-size: 2rem;
     }
 
-    .features {
-        grid-template-columns: 1fr;
+    .section-title p {
+        font-size: 1rem;
     }
 
-    /* Services */
-    .services-grid {
-        grid-template-columns: 1fr;
+    .service-filters {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+
+    .job-cards {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 1rem !important;
+    }
+
+    .job-card {
+        padding: 1.5rem !important;
+    }
+
+    .job-header h3 {
+        font-size: 1.5rem !important;
+    }
+
+    .department-badge {
+        font-size: 0.9rem !important;
+    }
+
+    /* Application Modal */
+    .modal-content {
+        width: 95% !important;
+        margin: 10px !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+
+    .application-form {
+        padding: 1rem !important;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 1rem !important;
+        padding: 0.8rem !important;
     }
 
     /* Footer */
+    .footer {
+        padding: 2rem 1rem;
+    }
+
     .footer-content {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         text-align: center;
     }
 
-    .footer-info {
-        display: flex;
+    .footer-links {
         flex-direction: column;
-        align-items: center;
+        gap: 1rem;
     }
 
     .social-links {
         justify-content: center;
-    }
-
-    .footer-contact p {
-        justify-content: center;
+        margin-top: 1rem;
     }
 }
 
 /* Tablet Styles (768px - 1024px) */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    /* Typography */
-    h1 {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .job-cards {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .hero-text h1 {
         font-size: 3rem;
     }
 
-    h2 {
-        font-size: 2.25rem;
+    .service-filters {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    /* Services */
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .filter-btn {
+        margin: 0.5rem;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .nav-menu {
+        overflow-y: auto;
     }
 
-    /* Footer */
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
+    .hero-content {
+        padding: 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .application-modal .modal-content {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+/* High-DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-text h1 {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .hero,
+    .application-modal,
+    .footer {
+        display: none !important;
+    }
+
+    .job-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 1px solid #000;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .job-card {
+        background: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+
+    .job-header h3,
+    .job-details p,
+    .job-description p,
+    .job-requirements li {
+        color: #fff !important;
+    }
+
+    .department-badge {
+        background: rgba(4, 76, 76, 0.3) !important;
+        color: #7fffd4 !important;
     }
 }
 
@@ -137,57 +239,6 @@
 @media screen and (min-width: 1920px) {
     html {
         font-size: 18px;
-    }
-}
-
-/* Print Styles */
-@media print {
-    .navbar,
-    .mobile-menu-btn,
-    .cta-buttons,
-    .social-links {
-        display: none !important;
-    }
-
-    body {
-        color: black;
-        background: white;
-    }
-
-    a {
-        text-decoration: none;
-        color: black;
-    }
-
-    .container {
-        width: 100%;
-        max-width: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .hero {
-        min-height: auto;
-        padding: 2rem 0;
-    }
-
-    .video-background,
-    .overlay,
-    .grid-pattern {
-        display: none;
-    }
-
-    .hero-text {
-        color: black;
-    }
-
-    .mission,
-    .vision,
-    .service-card {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ccc;
     }
 }
 
