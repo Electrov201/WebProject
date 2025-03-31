@@ -1,6 +1,4 @@
 // DOM Elements
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const mobileMenu = document.querySelector('.mobile-menu');
 const scrollIndicator = document.querySelector('.scroll-indicator');
 const servicesGrid = document.querySelector('.services-grid');
 
@@ -43,22 +41,6 @@ const services = [
         image: 'images/maintenance.jpg'
     }
 ];
-
-// Mobile Menu Toggle
-mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('open');
-    document.body.style.overflow = mobileMenu?.classList.contains('open') ? 'hidden' : '';
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (mobileMenu?.classList.contains('open') && 
-        !mobileMenu.contains(e.target) && 
-        !mobileMenuBtn?.contains(e.target)) {
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-});
 
 // Scroll Progress Indicator
 function updateScrollProgress() {
@@ -139,11 +121,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
-            // Close mobile menu if open
-            if (mobileMenu?.classList.contains('open')) {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = '';
-            }
         }
     });
 });
