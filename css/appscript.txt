@@ -1,0 +1,37 @@
+function doGet(e) {
+  // Get the active spreadsheet
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // Get all data from the sheet
+  var data = sheet.getDataRange().getValues();
+  
+  // Get headers from first row
+  var headers = data[0];
+  
+  // Convert data to array of objects
+  var jobs = [];
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    var job = {};
+    
+    // Skip empty rows
+    if (!row[0]) continue;
+    
+    // Create job object using headers
+    for (var j = 0; j < headers.length; j++) {
+      job[headers[j]] = row[j];
+    }
+    
+    jobs.push(job);
+  }
+  
+  // Return JSONP response
+  var callback = e.parameter.callback;
+  var response = {
+    status: 'success',
+    data: jobs
+  };
+  
+  return ContentService.createTextOutput(callback + '(' + JSON.stringify(response) + ')')
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}

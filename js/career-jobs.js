@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadingSpinner.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i><span>Loading job openings...</span>';
     
     // Google Apps Script URL - Updated to the new URL
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx0Qezv2vqU8Ke9pOBIzXQG883SEPmEzt8copWZS6_rsiwjLEq0UaAvQG7wbyJqEXXF3g/exec';
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyfdSOU43czlvM7P13yMwjG5KQCcpxp3pn1K47JVP_-3ft93qKN364Z9wr5gcZ_lIgXNA/exec';
     
     // Cache for job listings - make it accessible to other scripts
     window.jobListings = [];
