@@ -509,5 +509,132 @@
     <script src="/js/main.js"></script>
     <script src="/js/animations.js"></script>
     <script src="/js/career-jobs.js"></script>
+    <script>
+        // Fix for WebSocket error
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize job listings without WebSocket
+            const jobListingsContainer = document.getElementById('jobListings');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            // No demo job data - using data from career-jobs.js instead
+            
+            // Function to render jobs
+            function renderJobs(filteredJobs) {
+                jobListingsContainer.innerHTML = '';
+                
+                if (filteredJobs.length === 0) {
+                    jobListingsContainer.innerHTML = `
+                        <div class="no-jobs-message" style="text-align: center; padding: 2rem; color: #666;">
+                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: #044C4C;"></i>
+                            <h3>No positions found</h3>
+                            <p>We don't have any open positions in this department at the moment.</p>
+                            <p>Please check back later or submit your resume for future opportunities.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                filteredJobs.forEach(job => {
+                    const jobCard = document.createElement('div');
+                    jobCard.className = 'job-card';
+                    jobCard.style.cssText = 'background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); border-left: 4px solid #044C4C; transition: all 0.3s ease;';
+                    
+                    jobCard.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                            <div>
+                                <h3 style="color: #044C4C; margin: 0 0 5px 0; font-size: 1.4rem;">${job.title}</h3>
+                                <div style="display: flex; gap: 15px; color: #666; font-size: 0.9rem;">
+                                    <span><i class="fas fa-building" style="margin-right: 5px;"></i>${job.department}</span>
+                                    <span><i class="fas fa-map-marker-alt" style="margin-right: 5px;"></i>${job.location}</span>
+                                    <span><i class="fas fa-clock" style="margin-right: 5px;"></i>${job.type}</span>
+                                </div>
+                            </div>
+                            <button class="apply-btn" data-job-id="${job.id}" data-job-title="${job.title}" style="background: #044C4C; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 500; transition: all 0.3s ease;">
+                                Apply Now
+                            </button>
+                        </div>
+                        <p style="color: #444; line-height: 1.6; margin-bottom: 15px;">${job.description}</p>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="#" class="view-details" style="color: #044C4C; text-decoration: none; font-weight: 500; display: flex; align-items: center;">
+                                <i class="fas fa-info-circle" style="margin-right: 5px;"></i> View Details
+                            </a>
+                        </div>
+                    `;
+                    
+                    jobListingsContainer.appendChild(jobCard);
+                });
+                
+                // Add event listeners to apply buttons
+                document.querySelectorAll('.apply-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const jobId = this.getAttribute('data-job-id');
+                        const jobTitle = this.getAttribute('data-job-title');
+                        
+                        // Redirect to Google Form with job details
+                        window.open(`https://docs.google.com/forms/d/e/1FAIpQLScdcnussNmTn8SUZo6Zog8vn7pIOGD0ASm3Qch_dUNR0zc2EQ/viewform?usp=pp_url&entry.1234567890=${encodeURIComponent(jobTitle)}`, '_blank');
+                    });
+                });
+                
+                // Add event listeners to view details links
+                document.querySelectorAll('.view-details').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Implement view details functionality
+                        alert('Job details will be displayed here.');
+                    });
+                });
+            }
+            
+            // Filter jobs based on selected department
+            function filterJobs(department) {
+                // Get job listings from the career-jobs.js script
+                const jobListings = window.jobListings || [];
+                
+                if (department === 'all') {
+                    renderJobs(jobListings);
+                } else {
+                    const filteredJobs = jobListings.filter(job => 
+                        job.department.toLowerCase() === department.toLowerCase()
+                    );
+                    renderJobs(filteredJobs);
+                }
+            }
+            
+            // Add event listeners to filter buttons
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Update button styles
+                    filterButtons.forEach(b => {
+                        if (b.classList.contains('active')) {
+                            b.style.background = '#044C4C';
+                            b.style.color = 'white';
+                        } else {
+                            b.style.background = 'white';
+                            b.style.color = '#044C4C';
+                        }
+                    });
+                    
+                    // Filter jobs
+                    const department = this.getAttribute('data-filter');
+                    filterJobs(department);
+                });
+            });
+            
+            // Initialize with all jobs - but only if career-jobs.js hasn't already done it
+            if (!jobListingsContainer.hasChildNodes() || jobListingsContainer.querySelector('.loading-spinner')) {
+                // Wait a moment for career-jobs.js to load data
+                setTimeout(() => {
+                    const jobListings = window.jobListings || [];
+                    renderJobs(jobListings);
+                }, 1000);
+            }
+        });
+    </script>
 </body>
 </html> 
