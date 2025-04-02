@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     loadingSpinner.className = 'loading-spinner';
     loadingSpinner.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i><span>Loading job openings...</span>';
     
-    // Google Apps Script URL
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwH7egN4egZzVzd4jkKzGz4ooy3wGUO9JZzNZHxctDxapha-UByQBWE2Gd2Os5bl7GlHA/exec';
+    // Google Apps Script URL - Updated to the new URL
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx0Qezv2vqU8Ke9pOBIzXQG883SEPmEzt8copWZS6_rsiwjLEq0UaAvQG7wbyJqEXXF3g/exec';
     
-    // Cache for job listings
-    let jobListings = [];
+    // Cache for job listings - make it accessible to other scripts
+    window.jobListings = [];
     
     // Initialize everything
     initJobListings();
@@ -32,10 +32,28 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Initializing job listings...'); // Debug log
             jobListingsContainer.innerHTML = '';
             jobListingsContainer.appendChild(loadingSpinner);
-            fetchJobListings();
+            
+            // Set a timeout to use fallback data if the API doesn't respond
+            const timeoutId = setTimeout(() => {
+                console.log('API timeout - using fallback data');
+                window.jobListings = getFallbackData();
+                displayJobListings('all');
+            }, 5000); // 5 second timeout
+            
+            fetchJobListings(timeoutId);
         } else {
             console.error('Job listings container not found!'); // Debug log
+            window.jobListings = getFallbackData();
+            displayJobListings('all');
         }
+    }
+    
+    /**
+     * Get fallback data from the Google Sheet
+     */
+    function getFallbackData() {
+        // Return empty array instead of demo data
+        return [];
     }
     
     /**
@@ -59,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Fetch job listings from Google Sheet using JSONP
      */
-    function fetchJobListings() {
+    function fetchJobListings(timeoutId) {
         console.log('Fetching job listings from:', SHEET_URL); // Debug log
         
         // Show loading state
@@ -83,35 +101,73 @@ document.addEventListener('DOMContentLoaded', function() {
         window[callbackName] = function(response) {
             console.log('Received JSONP response:', response); // Debug log
             
+            // Clear the timeout since we got a response
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            
             try {
                 if (response && response.status === 'success' && Array.isArray(response.data)) {
-                    jobListings = response.data;
-                    console.log('Number of jobs loaded:', jobListings.length); // Debug log
-                    console.log('Job data:', jobListings); // Debug log
+                    // Process the data from Google Sheet
+                    window.jobListings = response.data.map(job => {
+                        // Format experience if it's a date string
+                        let experienceText = job.Experience;
+                        if (experienceText && typeof experienceText === 'string' && experienceText.includes('T')) {
+                            try {
+                                const date = new Date(experienceText);
+                                experienceText = date.toLocaleDateString('en-US', { 
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                });
+                            } catch (e) {
+                                console.log('Error formatting date:', e);
+                            }
+                        }
+                        
+                        return {
+                            id: job.id || '',
+                            title: job.Title || '',
+                            department: job.Department || '',
+                            location: job.Location || '',
+                            type: job.Type || '',
+                            experience: experienceText || '',
+                            description: job.Description || 'No description available',
+                            requirements: job.Requirement || 'No specific requirements listed'
+                        };
+                    });
+                    
+                    console.log('Number of jobs loaded:', window.jobListings.length); // Debug log
+                    console.log('Job data:', window.jobListings); // Debug log
                     displayJobListings('all');
                 } else {
                     console.error('Invalid response format:', response); // Debug log
-                    throw new Error('Invalid data format received');
+                    window.jobListings = getFallbackData();
+                    displayJobListings('all');
                 }
             } catch (error) {
                 console.error('Error processing job listings:', error);
-                showError('Failed to load job listings. Please try again later.');
+                window.jobListings = getFallbackData();
+                displayJobListings('all');
             } finally {
                 // Clean up
-                document.body.removeChild(script);
                 delete window[callbackName];
+                document.body.removeChild(script);
             }
         };
         
-        // Add error handling for the script
+        // Handle script load error
         script.onerror = function() {
-            console.error('Failed to load job listings script');
-            showError('Failed to load job listings. Please try again later.');
-            document.body.removeChild(script);
+            console.error('Failed to load script:', SHEET_URL);
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            window.jobListings = getFallbackData();
+            displayJobListings('all');
             delete window[callbackName];
         };
         
-        // Append the script to the document
+        // Add the script to the document
         document.body.appendChild(script);
     }
     
@@ -119,149 +175,95 @@ document.addEventListener('DOMContentLoaded', function() {
      * Display job listings based on department filter
      */
     function displayJobListings(department) {
-        console.log('Displaying jobs for department:', department); // Debug log
-        console.log('Available jobs:', jobListings); // Debug log
+        console.log('Displaying job listings for department:', department); // Debug log
         
         if (!jobListingsContainer) {
-            console.error('Job listings container not found');
+            console.error('Job listings container not found!');
             return;
         }
         
-        // Clear existing content
+        // Clear the container
         jobListingsContainer.innerHTML = '';
         
-        // Create container for job cards with explicit styling
-        const jobCardsContainer = document.createElement('div');
-        jobCardsContainer.className = 'job-cards';
-        jobCardsContainer.style.cssText = `
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            padding: 2rem;
-            background: #ffffff;
-        `;
-        
-        if (!Array.isArray(jobListings)) {
-            console.error('Job listings is not an array:', jobListings);
-            showError('Invalid job listings data');
-            return;
+        // Filter jobs by department if not 'all'
+        let filteredJobs = window.jobListings;
+        if (department !== 'all') {
+            filteredJobs = window.jobListings.filter(job => 
+                job.department.toLowerCase() === department.toLowerCase()
+            );
         }
-        
-        const filteredJobs = department === 'all' 
-            ? jobListings 
-            : jobListings.filter(job => {
-                const jobDept = (job.department || '').toLowerCase();
-                const filterDept = department.toLowerCase();
-                console.log('Comparing:', jobDept, 'with', filterDept); // Debug log
-                return jobDept === filterDept;
-            });
         
         console.log('Filtered jobs:', filteredJobs); // Debug log
         
+        // If no jobs found, display a message
         if (filteredJobs.length === 0) {
-            const noJobsMessage = document.createElement('div');
-            noJobsMessage.className = 'no-jobs-message';
-            noJobsMessage.style.cssText = `
-                text-align: center;
-                padding: 3rem;
-                background: #f8f9fa;
-                border-radius: 15px;
-                color: #333333;
-                width: 100%;
-                font-size: 1.2rem;
+            jobListingsContainer.innerHTML = `
+                <div class="no-jobs-message" style="text-align: center; padding: 2rem; color: #666;">
+                    <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: #044C4C;"></i>
+                    <h3>No positions found</h3>
+                    <p>We don't have any open positions in this department at the moment.</p>
+                    <p>Please check back later or submit your resume for future opportunities.</p>
+                </div>
             `;
-            noJobsMessage.innerHTML = '<p>No open positions found in this department.</p>';
-            jobListingsContainer.appendChild(noJobsMessage);
             return;
         }
         
         // Create and append job cards
         filteredJobs.forEach(job => {
-            console.log('Creating job card for:', job); // Debug log
             const jobCard = createJobCard(job);
-            jobCardsContainer.appendChild(jobCard);
+            jobListingsContainer.appendChild(jobCard);
         });
-        
-        // Append the job cards container to the main container
-        jobListingsContainer.appendChild(jobCardsContainer);
-        console.log('Job cards container appended with', filteredJobs.length, 'cards'); // Debug log
     }
     
     /**
      * Create a job card element
      */
     function createJobCard(job) {
-        console.log('Creating card for job:', job); // Debug log
-        const card = document.createElement('div');
-        card.className = 'job-card animate-fade-up';
-        card.style.cssText = `
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            border: 1px solid #e0e0e0;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
+        const jobCard = document.createElement('div');
+        jobCard.className = 'job-card';
+        jobCard.style.cssText = 'background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); border-left: 4px solid #044C4C; transition: all 0.3s ease;';
+        
+        jobCard.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                <div>
+                    <h3 style="color: #044C4C; margin: 0 0 5px 0; font-size: 1.4rem;">${job.title}</h3>
+                    <div style="display: flex; gap: 15px; color: #666; font-size: 0.9rem;">
+                        <span><i class="fas fa-building" style="margin-right: 5px;"></i>${job.department}</span>
+                        <span><i class="fas fa-map-marker-alt" style="margin-right: 5px;"></i>${job.location}</span>
+                        <span><i class="fas fa-clock" style="margin-right: 5px;"></i>${job.type}</span>
+                    </div>
+                </div>
+                <button class="apply-btn" data-job-id="${job.id}" data-job-title="${job.title}" style="background: #044C4C; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 500; transition: all 0.3s ease;">
+                    Apply Now
+                </button>
+            </div>
+            <p style="color: #444; line-height: 1.6; margin-bottom: 15px;">${job.description}</p>
+            <div style="display: flex; gap: 10px;">
+                <a href="#" class="view-details" style="color: #044C4C; text-decoration: none; font-weight: 500; display: flex; align-items: center;">
+                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i> View Details
+                </a>
+            </div>
         `;
         
-        // Format the experience date if it's a date string
-        let experienceText = job.experience;
-        if (experienceText && experienceText.includes('T')) {
-            try {
-                const date = new Date(experienceText);
-                experienceText = date.toLocaleDateString('en-US', { 
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            } catch (e) {
-                console.log('Error formatting date:', e);
-            }
-        }
+        // Add event listener to apply button
+        const applyBtn = jobCard.querySelector('.apply-btn');
+        applyBtn.addEventListener('click', function() {
+            const jobId = this.getAttribute('data-job-id');
+            const jobTitle = this.getAttribute('data-job-title');
+            
+            // Redirect to Google Form with job details
+            window.open(`https://docs.google.com/forms/d/e/1FAIpQLScdcnussNmTn8SUZo6Zog8vn7pIOGD0ASm3Qch_dUNR0zc2EQ/viewform?usp=pp_url&entry.1234567890=${encodeURIComponent(jobTitle)}`, '_blank');
+        });
         
-        card.innerHTML = `
-            <div class="job-header" style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid rgba(4, 76, 76, 0.1);">
-                <h3 style="font-size: 1.8rem; color: #044C4C; margin-bottom: 1rem; font-weight: 600; line-height: 1.3;">${job.title || 'Position Available'}</h3>
-                <span class="department-badge" style="display: inline-block; padding: 0.6rem 1.2rem; background: rgba(4, 76, 76, 0.1); color: #044C4C; border-radius: 25px; font-size: 0.95rem; font-weight: 500;">${job.department || 'General'}</span>
-            </div>
-            <div class="job-details" style="margin-bottom: 2rem;">
-                <p style="display: flex; align-items: center; margin-bottom: 1rem; color: #333333; font-size: 1.05rem;">
-                    <i class="fas fa-map-marker-alt" style="margin-right: 1rem; color: #044C4C; width: 20px; font-size: 1.1rem;"></i> 
-                    ${job.location || 'Location TBD'}
-                </p>
-                <p style="display: flex; align-items: center; margin-bottom: 1rem; color: #333333; font-size: 1.05rem;">
-                    <i class="fas fa-clock" style="margin-right: 1rem; color: #044C4C; width: 20px; font-size: 1.1rem;"></i> 
-                    ${job.type || 'Full Time'}
-                </p>
-                <p style="display: flex; align-items: center; margin-bottom: 1rem; color: #333333; font-size: 1.05rem;">
-                    <i class="fas fa-briefcase" style="margin-right: 1rem; color: #044C4C; width: 20px; font-size: 1.1rem;"></i> 
-                    Experience: ${experienceText || 'Not specified'}
-                </p>
-            </div>
-            <div class="job-description" style="margin-bottom: 2rem; color: #333333; line-height: 1.7; font-size: 1.05rem;">
-                <p>${job.description || 'No description available'}</p>
-            </div>
-            <div class="job-requirements" style="margin-bottom: 2rem;">
-                <h4 style="color: #044C4C; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 600;">Requirements:</h4>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    ${Array.isArray(job.requirements) 
-                        ? job.requirements.map(req => `<li style="position: relative; padding-left: 1.8rem; margin-bottom: 0.8rem; color: #333333; font-size: 1.05rem; line-height: 1.5;">${req}</li>`).join('')
-                        : `<li style="position: relative; padding-left: 1.8rem; margin-bottom: 0.8rem; color: #333333; font-size: 1.05rem; line-height: 1.5;">${job.requirements || 'Requirements to be determined'}</li>`
-                    }
-                </ul>
-            </div>
-            <button class="apply-btn" onclick="openApplicationModal('${job.id || ''}', '${(job.title || 'Position Available').replace(/'/g, "\\'")}')" 
-                style="width: 100%; padding: 1.2rem; background: #044C4C; color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto;">
-                Apply Now
-            </button>
-        `;
+        // Add event listener to view details link
+        const viewDetailsLink = jobCard.querySelector('.view-details');
+        viewDetailsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Implement view details functionality
+            alert('Job details will be displayed here.');
+        });
         
-        return card;
+        return jobCard;
     }
     
     /**
@@ -270,27 +272,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function showError(message) {
         if (jobListingsContainer) {
             jobListingsContainer.innerHTML = `
-                <div style="
-                    text-align: center;
-                    padding: 3rem;
-                    background: #fee;
-                    border-radius: 15px;
-                    color: #c00;
-                    margin: 2rem;
-                    font-size: 1.1rem;
-                ">
-                    ${message}
+                <div class="error-message" style="text-align: center; padding: 2rem; color: #d9534f;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h3>Error</h3>
+                    <p>${message}</p>
+                    <button id="retryButton" style="background: #044C4C; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 500; margin-top: 1rem;">
+                        Try Again
+                    </button>
                 </div>
             `;
+            
+            // Add event listener to retry button
+            const retryButton = document.getElementById('retryButton');
+            if (retryButton) {
+                retryButton.addEventListener('click', function() {
+                    initJobListings();
+                });
+            }
         }
-        console.error('Error:', message); // Debug log
     }
     
     /**
      * Hide loading spinner
      */
     function hideLoadingSpinner() {
-        const spinner = jobListingsContainer.querySelector('.loading-spinner');
+        const spinner = document.querySelector('.loading-spinner');
         if (spinner) {
             spinner.remove();
         }
@@ -301,46 +307,44 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function initModalControls() {
         // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.querySelector('.application-modal');
+            if (event.target === modal) {
+                closeApplicationModal();
+            }
+        });
+        
+        // Close modal when clicking close button
+        const closeButtons = document.querySelectorAll('.close-modal');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', closeApplicationModal);
+        });
+    }
+    
+    /**
+     * Open application modal
+     */
+    function openApplicationModal(jobId, jobTitle) {
         const modal = document.querySelector('.application-modal');
         if (modal) {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeApplicationModal();
-                }
-            });
+            // Set job details in the form
+            document.getElementById('jobId').value = jobId;
+            document.getElementById('jobTitle').value = jobTitle;
             
-            // Close modal when clicking close button
-            const closeBtn = modal.querySelector('.close-modal');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeApplicationModal);
-            }
+            // Show the modal
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    /**
+     * Close application modal
+     */
+    function closeApplicationModal() {
+        const modal = document.querySelector('.application-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
         }
     }
 });
-
-/**
- * Open application modal
- */
-function openApplicationModal(jobId, jobTitle) {
-    const modal = document.querySelector('.application-modal');
-    const titleInput = document.getElementById('jobTitle');
-    const idInput = document.getElementById('jobId');
-    
-    if (modal && titleInput && idInput) {
-        titleInput.value = jobTitle;
-        idInput.value = jobId;
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-/**
- * Close application modal
- */
-function closeApplicationModal() {
-    const modal = document.querySelector('.application-modal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-}
