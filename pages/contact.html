@@ -24,6 +24,21 @@
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        h1 {text-align: center;}
+        
+        /* Hero Section Styling */
+        .hero {
+            min-height: 100vh !important;
+            border-radius: 0 0 2rem 2rem !important;
+            padding: calc(var(--navbar-height) + 2rem) 0 4rem !important;
+        }
+        
+        .video-background {
+            border-radius: 0 0 2rem 2rem !important;
+            overflow: hidden !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -48,7 +63,7 @@
                 </div>
                 <div class="contact-cards">
                     <div class="card animate-fade-up" data-delay="100">
-                        <a href="tel:+917666032335">
+                        <a href="https://wa.me/917666032335">
                             <i class="fas fa-phone accent"></i>
                             <span>+91 7666032335</span>
                         </a>
@@ -69,7 +84,7 @@
             </div>
         </section>
 
-
+        <!-- Business Hours -->
         <section class="business-hours">
             <div class="container">
                 <div class="section-header animate-fade-up">
@@ -89,8 +104,6 @@
                         </div>
                     </div>
                     
-                
-                    
                     <div class="hours-card glass-card animate-fade-up" data-delay="200">
                         <div class="card-icon">
                             <i class="fas fa-calendar-times"></i>
@@ -105,7 +118,6 @@
             </div>
         </section>
 
-
         <!-- Contact Form Section -->
         <section class="contact-form-section">
             <div class="container">
@@ -116,54 +128,36 @@
                             <p>Fill out the form below and we'll get back to you shortly</p>
                         </div>
 
-                        <form id="contactForm" class="contact-form-fields">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Full Name</label>
-                                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                                </div>
+                        <form id="contactForm" class="contact-form-fields" onsubmit="return handleFormSubmit(this)">
+                            
+                            
+                            <p style="color:#666; font-size:0.9rem;">Fields marked with <span style="color:red">*</span> are required</p>
 
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                                </div>
+                            <div class="column">
+                                <label for="the-name">Your Name <span style="color:red">*</span></label>
+                                <input type="text" name="name" id="the-name" required placeholder="Required">
+
+                                <label for="the-email">Email Address</label>
+                                <input type="email" name="email" id="the-email">
+
+                                <label for="the-phone">Phone Number <span style="color:red">*</span></label>
+                                <input type="tel" name="phone" id="the-phone" required placeholder="Required">
+
+                                <label for="the-reason">Subject</label>
+                                <select name="reason" id="the-reason">
+                                    <option value="">Choose one</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="service">Service Information</option>
+                                    <option value="tech">Technical Support</option>
+                                    <option value="partner">Partnership</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="subject">Subject</label>
-                                    <select id="subject" name="subject" required>
-                                        <option value="">Select a subject</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="services">Services Information</option>
-                                        <option value="support">Technical Support</option>
-                                        <option value="partnership">Partnership</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
+                            <div class="column">
+                                <label for="the-message">Message</label>
+                                <textarea name="message" id="the-message"></textarea>
+                                <input type="submit" value="Send Message" id="submitBtn" class="btn btn-primary">
                             </div>
-
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" required placeholder="Enter your message"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="privacy" required>
-                                    <span>I agree to the <a href="/pages/privacy-policy.html">Privacy Policy</a> and <a href="/pages/terms.html">Terms of Service</a></span>
-                                </label>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">
-                                <span>Send Message</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
                         </form>
                     </div>
 
@@ -186,9 +180,6 @@
             </div>
         </section>
 
-        <!-- Business Hours -->
-      
-
         <!-- Footer -->
         <div id="footer-placeholder"></div>
     </main>
@@ -206,5 +197,93 @@
     </script>
     <script src="/js/main.js"></script>
     <script src="/js/animations.js"></script>
+    <script src="/js/contact.js"></script>
+    <script>
+    function handleFormSubmit(form) {
+        // Get values directly from the form
+        const name = document.getElementById('the-name').value.trim();
+        const email = document.getElementById('the-email').value.trim();
+        const phone = document.getElementById('the-phone').value.trim();
+        const reason = document.getElementById('the-reason').value;
+        const message = document.getElementById('the-message').value.trim();
+        
+        console.log('Form values at submit time:', {
+            name, email, phone, reason, message
+        });
+        
+        // Validate required fields
+        if (!name) {
+            alert('Please enter your name');
+            document.getElementById('the-name').focus();
+            return false;
+        }
+        
+        if (!phone) {
+            alert('Please enter your phone number');
+            document.getElementById('the-phone').focus();
+            return false;
+        }
+        
+        // Show loading state
+        const submitBtn = document.getElementById('submitBtn');
+        const originalText = submitBtn.value;
+        submitBtn.value = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Create form data for submission
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('phone', phone);
+        formData.append('subject', reason);
+        formData.append('message', message);
+        
+        // URL to Google Apps Script web app
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwGxV4qtWSTxfcs0zQp7UnHRo6lcgPwDZw7sJN0hpRr8d00Xi2N-0NNfkjC-_xy6N4-/exec';
+        
+        // Send data to Google Sheet
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        })
+        .then(() => {
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'form-status-message success-message';
+            successMsg.innerHTML = '<i class="fas fa-check-circle"></i><b>Success!</b> Your message has been sent.';
+            form.parentNode.insertBefore(successMsg, form);
+            
+            // Reset form
+            form.reset();
+            
+            // Restore button
+            submitBtn.value = originalText;
+            submitBtn.disabled = false;
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                if (successMsg.parentNode) {
+                    successMsg.parentNode.removeChild(successMsg);
+                }
+            }, 5000);
+        })
+        .catch(error => {
+            // Show error message
+            console.error('Error:', error);
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'form-status-message error-message';
+            errorMsg.innerHTML = '<i class="fas fa-exclamation-circle"></i><b>Error!</b> There was a problem sending your message.';
+            form.parentNode.insertBefore(errorMsg, form);
+            
+            // Restore button
+            submitBtn.value = originalText;
+            submitBtn.disabled = false;
+        });
+        
+        // Prevent default form submission
+        return false;
+    }
+    </script>
 </body>
 </html> 
